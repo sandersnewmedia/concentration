@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
+		754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
+		754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559814A15F82003E8E6F /* CoreGraphics.framework */; };
+		754E559F14A15F82003E8E6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 754E559D14A15F82003E8E6F /* InfoPlist.strings */; };
+		754E55A114A15F82003E8E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A014A15F82003E8E6F /* main.m */; };
+		754E55A514A15F82003E8E6F /* SNMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A414A15F82003E8E6F /* SNMAppDelegate.m */; };
+		754E55A814A15F82003E8E6F /* SNMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A714A15F82003E8E6F /* SNMViewController.m */; };
+		754E55AB14A15F82003E8E6F /* SNMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754E55A914A15F82003E8E6F /* SNMViewController.xib */; };
+		754E55B314A15F82003E8E6F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E55B214A15F82003E8E6F /* SenTestingKit.framework */; };
+		754E55B414A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
+		754E55B514A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
+		754E55BD14A15F82003E8E6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 754E55BB14A15F82003E8E6F /* InfoPlist.strings */; };
+		754E55C014A15F83003E8E6F /* concentrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55BF14A15F83003E8E6F /* concentrationTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		754E55B614A15F82003E8E6F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 754E558714A15F82003E8E6F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 754E558F14A15F82003E8E6F;
+			remoteInfo = concentration;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		754E559014A15F82003E8E6F /* concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		754E559414A15F82003E8E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		754E559614A15F82003E8E6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		754E559814A15F82003E8E6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		754E559C14A15F82003E8E6F /* concentration-Info.plist */ = {isa = PBXFileReference; path = "concentration-Info.plist"; sourceTree = "<group>"; };
+		754E559E14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		754E55A014A15F82003E8E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		754E55A214A15F82003E8E6F /* concentration-Prefix.pch */ = {isa = PBXFileReference; path = "concentration-Prefix.pch"; sourceTree = "<group>"; };
+		754E55A314A15F82003E8E6F /* SNMAppDelegate.h */ = {isa = PBXFileReference; path = SNMAppDelegate.h; sourceTree = "<group>"; };
+		754E55A414A15F82003E8E6F /* SNMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNMAppDelegate.m; sourceTree = "<group>"; };
+		754E55A614A15F82003E8E6F /* SNMViewController.h */ = {isa = PBXFileReference; path = SNMViewController.h; sourceTree = "<group>"; };
+		754E55A714A15F82003E8E6F /* SNMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNMViewController.m; sourceTree = "<group>"; };
+		754E55AA14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SNMViewController.xib; sourceTree = "<group>"; };
+		754E55B114A15F82003E8E6F /* concentrationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = concentrationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		754E55B214A15F82003E8E6F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
+		754E55BA14A15F82003E8E6F /* concentrationTests-Info.plist */ = {isa = PBXFileReference; path = "concentrationTests-Info.plist"; sourceTree = "<group>"; };
+		754E55BC14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		754E55BE14A15F83003E8E6F /* concentrationTests.h */ = {isa = PBXFileReference; path = concentrationTests.h; sourceTree = "<group>"; };
+		754E55BF14A15F83003E8E6F /* concentrationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = concentrationTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		754E558D14A15F82003E8E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */,
+				754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */,
+				754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754E55AD14A15F82003E8E6F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754E55B314A15F82003E8E6F /* SenTestingKit.framework in Frameworks */,
+				754E55B414A15F82003E8E6F /* UIKit.framework in Frameworks */,
+				754E55B514A15F82003E8E6F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		754E558514A15F82003E8E6F = {
+			isa = PBXGroup;
+			children = (
+				754E559A14A15F82003E8E6F /* concentration */,
+				754E55B814A15F82003E8E6F /* concentrationTests */,
+				754E559314A15F82003E8E6F /* Frameworks */,
+				754E559114A15F82003E8E6F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		754E559114A15F82003E8E6F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				754E559014A15F82003E8E6F /* concentration.app */,
+				754E55B114A15F82003E8E6F /* concentrationTests.octest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		754E559314A15F82003E8E6F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				754E559414A15F82003E8E6F /* UIKit.framework */,
+				754E559614A15F82003E8E6F /* Foundation.framework */,
+				754E559814A15F82003E8E6F /* CoreGraphics.framework */,
+				754E55B214A15F82003E8E6F /* SenTestingKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		754E559A14A15F82003E8E6F /* concentration */ = {
+			isa = PBXGroup;
+			children = (
+				754E55A314A15F82003E8E6F /* SNMAppDelegate.h */,
+				754E55A414A15F82003E8E6F /* SNMAppDelegate.m */,
+				754E55A614A15F82003E8E6F /* SNMViewController.h */,
+				754E55A714A15F82003E8E6F /* SNMViewController.m */,
+				754E55A914A15F82003E8E6F /* SNMViewController.xib */,
+				754E559B14A15F82003E8E6F /* Supporting Files */,
+			);
+			path = concentration;
+			sourceTree = "<group>";
+		};
+		754E559B14A15F82003E8E6F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				754E559C14A15F82003E8E6F /* concentration-Info.plist */,
+				754E559D14A15F82003E8E6F /* InfoPlist.strings */,
+				754E55A014A15F82003E8E6F /* main.m */,
+				754E55A214A15F82003E8E6F /* concentration-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		754E55B814A15F82003E8E6F /* concentrationTests */ = {
+			isa = PBXGroup;
+			children = (
+				754E55BE14A15F83003E8E6F /* concentrationTests.h */,
+				754E55BF14A15F83003E8E6F /* concentrationTests.m */,
+				754E55B914A15F82003E8E6F /* Supporting Files */,
+			);
+			path = concentrationTests;
+			sourceTree = "<group>";
+		};
+		754E55B914A15F82003E8E6F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				754E55BA14A15F82003E8E6F /* concentrationTests-Info.plist */,
+				754E55BB14A15F82003E8E6F /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		754E558F14A15F82003E8E6F /* concentration */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 754E55C314A15F83003E8E6F /* Build configuration list for PBXNativeTarget "concentration" */;
+			buildPhases = (
+				754E558C14A15F82003E8E6F /* Sources */,
+				754E558D14A15F82003E8E6F /* Frameworks */,
+				754E558E14A15F82003E8E6F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = concentration;
+			productName = concentration;
+			productReference = 754E559014A15F82003E8E6F /* concentration.app */;
+			productType = "com.apple.product-type.application";
+		};
+		754E55B014A15F82003E8E6F /* concentrationTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 754E55C614A15F83003E8E6F /* Build configuration list for PBXNativeTarget "concentrationTests" */;
+			buildPhases = (
+				754E55AC14A15F82003E8E6F /* Sources */,
+				754E55AD14A15F82003E8E6F /* Frameworks */,
+				754E55AE14A15F82003E8E6F /* Resources */,
+				754E55AF14A15F82003E8E6F /* ShellScript */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				754E55B714A15F82003E8E6F /* PBXTargetDependency */,
+			);
+			name = concentrationTests;
+			productName = concentrationTests;
+			productReference = 754E55B114A15F82003E8E6F /* concentrationTests.octest */;
+			productType = "com.apple.product-type.bundle";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		754E558714A15F82003E8E6F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+				ORGANIZATIONNAME = "Sanders New Media";
+			};
+			buildConfigurationList = 754E558A14A15F82003E8E6F /* Build configuration list for PBXProject "concentration" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 754E558514A15F82003E8E6F;
+			productRefGroup = 754E559114A15F82003E8E6F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				754E558F14A15F82003E8E6F /* concentration */,
+				754E55B014A15F82003E8E6F /* concentrationTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		754E558E14A15F82003E8E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754E559F14A15F82003E8E6F /* InfoPlist.strings in Resources */,
+				754E55AB14A15F82003E8E6F /* SNMViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754E55AE14A15F82003E8E6F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754E55BD14A15F82003E8E6F /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		754E55AF14A15F82003E8E6F /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Run the unit tests in this test bundle.\n\"${SYSTEM_DEVELOPER_DIR}/Tools/RunUnitTests\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		754E558C14A15F82003E8E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754E55A114A15F82003E8E6F /* main.m in Sources */,
+				754E55A514A15F82003E8E6F /* SNMAppDelegate.m in Sources */,
+				754E55A814A15F82003E8E6F /* SNMViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		754E55AC14A15F82003E8E6F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				754E55C014A15F83003E8E6F /* concentrationTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		754E55B714A15F82003E8E6F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 754E558F14A15F82003E8E6F /* concentration */;
+			targetProxy = 754E55B614A15F82003E8E6F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		754E559D14A15F82003E8E6F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754E559E14A15F82003E8E6F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		754E55A914A15F82003E8E6F /* SNMViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754E55AA14A15F82003E8E6F /* en */,
+			);
+			name = SNMViewController.xib;
+			sourceTree = "<group>";
+		};
+		754E55BB14A15F82003E8E6F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				754E55BC14A15F82003E8E6F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		754E55C114A15F83003E8E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		754E55C214A15F83003E8E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		754E55C414A15F83003E8E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "concentration/concentration-Prefix.pch";
+				INFOPLIST_FILE = "concentration/concentration-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		754E55C514A15F83003E8E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "concentration/concentration-Prefix.pch";
+				INFOPLIST_FILE = "concentration/concentration-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		754E55C714A15F83003E8E6F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/concentration.app/concentration";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "concentration/concentration-Prefix.pch";
+				INFOPLIST_FILE = "concentrationTests/concentrationTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Debug;
+		};
+		754E55C814A15F83003E8E6F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/concentration.app/concentration";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "concentration/concentration-Prefix.pch";
+				INFOPLIST_FILE = "concentrationTests/concentrationTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = octest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		754E558A14A15F82003E8E6F /* Build configuration list for PBXProject "concentration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754E55C114A15F83003E8E6F /* Debug */,
+				754E55C214A15F83003E8E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		754E55C314A15F83003E8E6F /* Build configuration list for PBXNativeTarget "concentration" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754E55C414A15F83003E8E6F /* Debug */,
+				754E55C514A15F83003E8E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		754E55C614A15F83003E8E6F /* Build configuration list for PBXNativeTarget "concentrationTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				754E55C714A15F83003E8E6F /* Debug */,
+				754E55C814A15F83003E8E6F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 754E558714A15F82003E8E6F /* Project object */;
+}
