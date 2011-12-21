@@ -36,6 +36,7 @@
     if(self = [super initWithCoder:aDecoder]) {
         attempts = 0;
         matches  = 0;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
     }
     return self;
 }
@@ -152,10 +153,17 @@
     self.cardLayers = nil;
 }
 
+- (NSDictionary *)scoreDict
+{
+    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                          [NSNumber numberWithInt:matches],  @"matches",
+                          [NSNumber numberWithInt:attempts], @"attempts",nil] autorelease];
+    return dict;
+}
+
 - (void)updateScore
 {
-    [self.soundUtil playSound:Match];
-    //this will send out a notification saying the score has been updated and what its been updated to...
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
 }
 
 - (void)selectCard:(Card *)card
@@ -167,18 +175,27 @@
                 [card matched];
                 [self.currentCard matched];
                 matches++;
-                [self updateScore];
+                [self.soundUtil playSound:Match];
             } else {                                        //NO MATCH
                 [card notMatched];
                 [self.currentCard notMatched];
             }
             self.currentCard = nil;
             attempts ++;
+            [self updateScore];
         } 
     } else {
         [card flip];
         self.currentCard = card;
     }
+}
+
+- (void)restart 
+{
+    matches = 0;
+    attempts = 0;
+    [self updateScore];
+    [self drawBoard];
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {

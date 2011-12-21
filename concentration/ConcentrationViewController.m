@@ -10,15 +10,12 @@
 
 @implementation ConcentrationViewController
 
-@synthesize board;
+@synthesize board,scoreBoard;
 
 - (id)init
 {
     if(self = [super init]) {
-        //todo check for existing games
-        turns   = 0;
-        time    = 0;
-        level   = 0;
+        
     }
     return self;
 }
@@ -58,7 +55,6 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    //piping this to the board... 
     [self.board touchesBegan:touches withEvent:event];
 }
 

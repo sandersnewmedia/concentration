@@ -8,14 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "Board.h"
+#import "ScoreBoard.h"
 #import "Card.h"
 
 @interface ConcentrationViewController : UIViewController {
-    int turns;
-    int time;
-    int level;
+    
 }
 
 @property (nonatomic, retain) IBOutlet Board *board;
+@property (nonatomic, retain) IBOutlet ScoreBoard *scoreBoard;
 
 @end
