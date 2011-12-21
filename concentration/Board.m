@@ -8,6 +8,7 @@
 
 #import "Board.h"
 #import <QuartzCore/QuartzCore.h>
+#import "NSMutableArray+Shuffling.h"
 
 #define NUM_ROWS    4
 #define NUM_COLS    4
@@ -28,28 +29,46 @@
 
 @implementation Board
 
-@synthesize cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil;
+@synthesize cards=_cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil;
 
-- (id)initWithFrame:(CGRect)frame
+- (id)initWithCoder:(NSCoder *)aDecoder
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        // Initialization code
-    }
-    return self;
-}
-
-- (id)initWithCards:(NSArray *)theCards
-{
-    if(self = [self initWithFrame:CGRectMake(200,50,824,718)]) {
-        self.cards = theCards;
-        matches = 0;
+    if(self = [super initWithCoder:aDecoder]) {
         attempts = 0;
-        [self drawBoard];
-        [self showPeek];
+        matches  = 0;
     }
     return self;
 }
+
+- (NSArray *)cards
+{
+    if(!_cards) {
+        //create all cards with 2 types of each...
+        NSMutableArray *allCards = [[NSMutableArray alloc] initWithObjects:
+                                    [NSNumber numberWithInt:Robot],
+                                    [NSNumber numberWithInt:Rocket],
+                                    [NSNumber numberWithInt:Grandpa],
+                                    [NSNumber numberWithInt:Mom],
+                                    [NSNumber numberWithInt:Dad],
+                                    [NSNumber numberWithInt:Brent],
+                                    [NSNumber numberWithInt:Scott],
+                                    [NSNumber numberWithInt:Elijah],
+                                    [NSNumber numberWithInt:Robot],
+                                    [NSNumber numberWithInt:Rocket],
+                                    [NSNumber numberWithInt:Grandpa],
+                                    [NSNumber numberWithInt:Mom],
+                                    [NSNumber numberWithInt:Dad],
+                                    [NSNumber numberWithInt:Brent],
+                                    [NSNumber numberWithInt:Scott],
+                                    [NSNumber numberWithInt:Elijah],nil];
+        //shuffle up all the cards
+        [allCards shuffle];
+        _cards = [allCards copy];
+        [allCards release];
+    }
+    return _cards;
+}
+
 
 - (NSMutableArray *)cardLayers 
 {
@@ -69,9 +88,16 @@
 
 - (void)dealloc
 {
+    [_cards release];
     [_soundUtil release];
     [_cardLayers release];
     [super dealloc];
+}
+
+- (void)awakeFromNib
+{
+    [self drawBoard];
+    [self showPeek];
 }
 
 - (void)drawBoard

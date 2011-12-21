@@ -16,7 +16,6 @@
     int level;
 }
 
-@property (nonatomic, retain) Board *board;
-@property (nonatomic, retain) NSArray *cards;
+@property (nonatomic, retain) IBOutlet Board *board;
 
 @end

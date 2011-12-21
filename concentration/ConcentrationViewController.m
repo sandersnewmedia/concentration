@@ -7,49 +7,10 @@
 //
 
 #import "ConcentrationViewController.h"
-#import "NSMutableArray+Shuffling.h"
 
 @implementation ConcentrationViewController
 
-@synthesize board=_board, cards=_cards;
-
-- (Board *)board 
-{
-    if(!_board) {
-        //todo: add customizable board sizes
-        _board = [[Board alloc] initWithCards:self.cards];
-    }
-    return _board;
-}
-
-- (NSArray *)cards
-{
-    if(!_cards) {
-        //create all cards with 2 types of each...
-        NSMutableArray *allCards = [[NSMutableArray alloc] initWithObjects:
-                  [NSNumber numberWithInt:Robot],
-                  [NSNumber numberWithInt:Rocket],
-                  [NSNumber numberWithInt:Grandpa],
-                  [NSNumber numberWithInt:Mom],
-                  [NSNumber numberWithInt:Dad],
-                  [NSNumber numberWithInt:Brent],
-                  [NSNumber numberWithInt:Scott],
-                  [NSNumber numberWithInt:Elijah],
-                  [NSNumber numberWithInt:Robot],
-                  [NSNumber numberWithInt:Rocket],
-                  [NSNumber numberWithInt:Grandpa],
-                  [NSNumber numberWithInt:Mom],
-                  [NSNumber numberWithInt:Dad],
-                  [NSNumber numberWithInt:Brent],
-                  [NSNumber numberWithInt:Scott],
-                  [NSNumber numberWithInt:Elijah],nil];
-        //shuffle up all the cards
-        [allCards shuffle];
-        _cards = [allCards copy];
-        [allCards release];
-    }
-    return _cards;
-}
+@synthesize board;
 
 - (id)init
 {
@@ -64,8 +25,6 @@
 
 - (void)dealloc
 {
-    [_cards release];
-    [_board release];
     [super dealloc];
 }
 
@@ -80,7 +39,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self.view addSubview:self.board];
 	
 }
 
@@ -98,5 +56,11 @@
     
     return NO;
 }
+
+- (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
+    //piping this to the board... 
+    [self.board touchesBegan:touches withEvent:event];
+}
+
 
 @end
