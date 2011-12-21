@@ -8,8 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "Board.h"
+#import "Card.h"
 
-@interface SNMViewController : UIViewController {
+@interface ConcentrationViewController : UIViewController {
     int turns;
     int time;
     int level;

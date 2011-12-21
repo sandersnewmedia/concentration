@@ -7,14 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		065799FB14A22FE400474588 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 065799FA14A22FE400474588 /* Card.m */; };
+		065799FF14A2395D00474588 /* page-flip-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 065799FE14A2395D00474588 /* page-flip-2.wav */; };
+		06579A0314A23B4C00474588 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06579A0214A23B4C00474588 /* AudioToolbox.framework */; };
 		754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
 		754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
 		754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559814A15F82003E8E6F /* CoreGraphics.framework */; };
 		754E559F14A15F82003E8E6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 754E559D14A15F82003E8E6F /* InfoPlist.strings */; };
 		754E55A114A15F82003E8E6F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A014A15F82003E8E6F /* main.m */; };
 		754E55A514A15F82003E8E6F /* SNMAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A414A15F82003E8E6F /* SNMAppDelegate.m */; };
-		754E55A814A15F82003E8E6F /* SNMViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A714A15F82003E8E6F /* SNMViewController.m */; };
-		754E55AB14A15F82003E8E6F /* SNMViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754E55A914A15F82003E8E6F /* SNMViewController.xib */; };
+		754E55A814A15F82003E8E6F /* ConcentrationViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55A714A15F82003E8E6F /* ConcentrationViewController.m */; };
 		754E55B314A15F82003E8E6F /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E55B214A15F82003E8E6F /* SenTestingKit.framework */; };
 		754E55B414A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
 		754E55B514A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
@@ -36,6 +38,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		065799F914A22FE400474588 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
+		065799FA14A22FE400474588 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
+		065799FE14A2395D00474588 /* page-flip-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "page-flip-2.wav"; sourceTree = "<group>"; };
+		06579A0214A23B4C00474588 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		754E559014A15F82003E8E6F /* concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754E559414A15F82003E8E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		754E559614A15F82003E8E6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -46,9 +52,8 @@
 		754E55A214A15F82003E8E6F /* concentration-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "concentration-Prefix.pch"; sourceTree = "<group>"; };
 		754E55A314A15F82003E8E6F /* SNMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNMAppDelegate.h; sourceTree = "<group>"; };
 		754E55A414A15F82003E8E6F /* SNMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNMAppDelegate.m; sourceTree = "<group>"; };
-		754E55A614A15F82003E8E6F /* SNMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNMViewController.h; sourceTree = "<group>"; };
-		754E55A714A15F82003E8E6F /* SNMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNMViewController.m; sourceTree = "<group>"; };
-		754E55AA14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SNMViewController.xib; sourceTree = "<group>"; };
+		754E55A614A15F82003E8E6F /* ConcentrationViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ConcentrationViewController.h; sourceTree = "<group>"; };
+		754E55A714A15F82003E8E6F /* ConcentrationViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ConcentrationViewController.m; sourceTree = "<group>"; };
 		754E55B114A15F82003E8E6F /* concentrationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = concentrationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		754E55B214A15F82003E8E6F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		754E55BA14A15F82003E8E6F /* concentrationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "concentrationTests-Info.plist"; sourceTree = "<group>"; };
@@ -67,6 +72,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06579A0314A23B4C00474588 /* AudioToolbox.framework in Frameworks */,
 				754E55CE14A16319003E8E6F /* QuartzCore.framework in Frameworks */,
 				754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */,
 				754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */,
@@ -87,10 +93,28 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		065799FC14A22FE900474588 /* UIViews */ = {
+			isa = PBXGroup;
+			children = (
+				754E55CA14A16106003E8E6F /* Board.h */,
+				754E55CB14A16106003E8E6F /* Board.m */,
+				065799F914A22FE400474588 /* Card.h */,
+				065799FA14A22FE400474588 /* Card.m */,
+			);
+			name = UIViews;
+			sourceTree = "<group>";
+		};
+		065799FD14A2394D00474588 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				065799FE14A2395D00474588 /* page-flip-2.wav */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		754E558514A15F82003E8E6F = {
 			isa = PBXGroup;
 			children = (
-				754E55CD14A16319003E8E6F /* QuartzCore.framework */,
 				754E559A14A15F82003E8E6F /* concentration */,
 				754E55B814A15F82003E8E6F /* concentrationTests */,
 				754E559314A15F82003E8E6F /* Frameworks */,
@@ -110,6 +134,8 @@
 		754E559314A15F82003E8E6F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				06579A0214A23B4C00474588 /* AudioToolbox.framework */,
+				754E55CD14A16319003E8E6F /* QuartzCore.framework */,
 				754E559414A15F82003E8E6F /* UIKit.framework */,
 				754E559614A15F82003E8E6F /* Foundation.framework */,
 				754E559814A15F82003E8E6F /* CoreGraphics.framework */,
@@ -121,15 +147,14 @@
 		754E559A14A15F82003E8E6F /* concentration */ = {
 			isa = PBXGroup;
 			children = (
+				065799FD14A2394D00474588 /* Resources */,
 				754E55D314A16876003E8E6F /* Categories */,
 				754E55A314A15F82003E8E6F /* SNMAppDelegate.h */,
 				754E55A414A15F82003E8E6F /* SNMAppDelegate.m */,
-				754E55A614A15F82003E8E6F /* SNMViewController.h */,
-				754E55A714A15F82003E8E6F /* SNMViewController.m */,
-				754E55A914A15F82003E8E6F /* SNMViewController.xib */,
+				754E55A614A15F82003E8E6F /* ConcentrationViewController.h */,
+				754E55A714A15F82003E8E6F /* ConcentrationViewController.m */,
+				065799FC14A22FE900474588 /* UIViews */,
 				754E559B14A15F82003E8E6F /* Supporting Files */,
-				754E55CA14A16106003E8E6F /* Board.h */,
-				754E55CB14A16106003E8E6F /* Board.m */,
 			);
 			path = concentration;
 			sourceTree = "<group>";
@@ -245,7 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				754E559F14A15F82003E8E6F /* InfoPlist.strings in Resources */,
-				754E55AB14A15F82003E8E6F /* SNMViewController.xib in Resources */,
+				065799FF14A2395D00474588 /* page-flip-2.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -282,9 +307,10 @@
 			files = (
 				754E55A114A15F82003E8E6F /* main.m in Sources */,
 				754E55A514A15F82003E8E6F /* SNMAppDelegate.m in Sources */,
-				754E55A814A15F82003E8E6F /* SNMViewController.m in Sources */,
+				754E55A814A15F82003E8E6F /* ConcentrationViewController.m in Sources */,
 				754E55CC14A16106003E8E6F /* Board.m in Sources */,
 				754E55D614A16888003E8E6F /* NSMutableArray+Shuffling.m in Sources */,
+				065799FB14A22FE400474588 /* Card.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -313,14 +339,6 @@
 				754E559E14A15F82003E8E6F /* en */,
 			);
 			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		754E55A914A15F82003E8E6F /* SNMViewController.xib */ = {
-			isa = PBXVariantGroup;
-			children = (
-				754E55AA14A15F82003E8E6F /* en */,
-			);
-			name = SNMViewController.xib;
 			sourceTree = "<group>";
 		};
 		754E55BB14A15F82003E8E6F /* InfoPlist.strings */ = {
@@ -454,6 +472,7 @@
 				754E55C514A15F83003E8E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		754E55C614A15F83003E8E6F /* Build configuration list for PBXNativeTarget "concentrationTests" */ = {
 			isa = XCConfigurationList;
@@ -462,6 +481,7 @@
 				754E55C814A15F83003E8E6F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

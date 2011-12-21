@@ -6,11 +6,12 @@
 //  Copyright (c) 2011 Sanders New Media. All rights reserved.
 //
 
-#import "SNMViewController.h"
+#import "ConcentrationViewController.h"
+#import "NSMutableArray+Shuffling.h"
 
 #define NUM_CARDS 24
 
-@implementation SNMViewController
+@implementation ConcentrationViewController
 
 @synthesize board=_board, cards=_cards;
 
@@ -26,7 +27,28 @@
 - (NSArray *)cards
 {
     if(!_cards) {
-        _cards = [[NSArray alloc] initWithObjects:[UIColor blueColor], [UIColor redColor], [UIColor greenColor], [UIColor yellowColor],[UIColor blueColor], [UIColor redColor], [UIColor greenColor], [UIColor yellowColor], nil];
+        //create all cards with 2 types of each...
+        NSMutableArray *allCards = [[NSMutableArray alloc] initWithObjects:
+                  [NSNumber numberWithInt:Robot],
+                  [NSNumber numberWithInt:Rocket],
+                  [NSNumber numberWithInt:Grandpa],
+                  [NSNumber numberWithInt:Mom],
+                  [NSNumber numberWithInt:Dad],
+                  [NSNumber numberWithInt:Brent],
+                  [NSNumber numberWithInt:Scott],
+                  [NSNumber numberWithInt:Elijah],
+                  [NSNumber numberWithInt:Robot],
+                  [NSNumber numberWithInt:Rocket],
+                  [NSNumber numberWithInt:Grandpa],
+                  [NSNumber numberWithInt:Mom],
+                  [NSNumber numberWithInt:Dad],
+                  [NSNumber numberWithInt:Brent],
+                  [NSNumber numberWithInt:Scott],
+                  [NSNumber numberWithInt:Elijah],nil];
+        //shuffle up all the cards
+        [allCards shuffle];
+        _cards = [allCards copy];
+        [allCards release];
     }
     return _cards;
 }

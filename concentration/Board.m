@@ -7,6 +7,7 @@
 //
 
 #import "Board.h"
+#import "Card.h"
 #import <QuartzCore/QuartzCore.h>
 
 #define NUM_ROWS    4
@@ -43,6 +44,14 @@
     return self;
 }
 
+- (NSMutableArray *)cardLayers 
+{
+    if(!_cardLayers) {
+        _cardLayers = [[NSMutableArray alloc] init];
+    }
+    return _cardLayers;
+}
+
 - (void)dealloc
 {
     [_cardLayers release];
@@ -54,23 +63,11 @@
     [self clearBoard];
     int colCount = 0;
     int rowCount = 0;
-    for(UIColor *color in self.cards) {
-        CATransformLayer *layer = [CATransformLayer new];
-        CALayer *backLayer = [CALayer new];
-        [backLayer setBackgroundColor:[UIColor lightGrayColor].CGColor];
-        CALayer *frontLayer = [CALayer new];
-        [frontLayer setBackgroundColor:color.CGColor];
-        frontLayer.zPosition = 0;
-        backLayer.zPosition = 1;
-        frontLayer.frame = CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT);
-        backLayer.frame = CGRectMake(0, 0, CARD_WIDTH, CARD_HEIGHT);
-        [layer addSublayer:backLayer];
-        [layer addSublayer:frontLayer];
-        
-        
+    for(NSNumber *cardTypeNumber in self.cards) {
+        CardType type = [cardTypeNumber intValue];
         float xLocation = colCount * (CARD_WIDTH + PADDING);
         float yLocation = rowCount * (CARD_HEIGHT + PADDING);
-        layer.frame = CGRectMake(xLocation, yLocation, CARD_WIDTH, CARD_HEIGHT);
+        CGRect cardFrame = CGRectMake(xLocation, yLocation, CARD_WIDTH, CARD_HEIGHT);
         
         if(colCount > NUM_COLS) {
             colCount = 0;
@@ -79,10 +76,10 @@
             colCount ++;
         }
         
-        [self.layer addSublayer:layer];
-        [frontLayer release];
-        [backLayer release];
-        [layer release];
+        Card *card = [[Card alloc] initWithType:type andFrame:cardFrame];
+        [self.layer addSublayer:card];
+        [self.cardLayers addObject:card];
+        [card release];
     }
 }
 
@@ -98,15 +95,11 @@
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if([touches count] == 1) {
-        for(UITouch *touch in touches) {
-            CGPoint point = [touch locationInView:self];
-            point = [self.layer convertPoint:point toLayer:self.layer.superlayer];
-            CATransformLayer *layer = (CATransformLayer *)[self.layer hitTest:point];
-            
-            [CATransaction begin];
-            [CATransaction setAnimationDuration:1.0];
-            [layer superlayer].transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
-            [CATransaction commit];
+        CGPoint point = [[touches anyObject] locationInView:self];
+        for(Card *card in self.cardLayers) {
+            if([card containsPoint:[self.layer convertPoint:point toLayer:card]]) {
+                [card flip];
+            }
         }
     }
 }

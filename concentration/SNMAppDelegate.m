@@ -8,7 +8,7 @@
 
 #import "SNMAppDelegate.h"
 
-#import "SNMViewController.h"
+#import "ConcentrationViewController.h"
 
 @implementation SNMAppDelegate
 
@@ -26,7 +26,7 @@
 {
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[[SNMViewController alloc] init] autorelease];
+    self.viewController = [[[ConcentrationViewController alloc] init] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;

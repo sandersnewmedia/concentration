@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@class SNMViewController;
+@class ConcentrationViewController;
 
 @interface SNMAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic) SNMViewController *viewController;
+@property (strong, nonatomic) ConcentrationViewController *viewController;
 
 @end
