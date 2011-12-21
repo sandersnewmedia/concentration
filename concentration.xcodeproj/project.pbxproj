@@ -98,8 +98,6 @@
 			children = (
 				754E55CA14A16106003E8E6F /* Board.h */,
 				754E55CB14A16106003E8E6F /* Board.m */,
-				065799F914A22FE400474588 /* Card.h */,
-				065799FA14A22FE400474588 /* Card.m */,
 			);
 			name = UIViews;
 			sourceTree = "<group>";
@@ -110,6 +108,33 @@
 				065799FE14A2395D00474588 /* page-flip-2.wav */,
 			);
 			name = Resources;
+			sourceTree = "<group>";
+		};
+		06579A0414A23CD800474588 /* CALayers */ = {
+			isa = PBXGroup;
+			children = (
+				065799F914A22FE400474588 /* Card.h */,
+				065799FA14A22FE400474588 /* Card.m */,
+			);
+			name = CALayers;
+			sourceTree = "<group>";
+		};
+		06579A0514A23CE900474588 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				754E55A614A15F82003E8E6F /* ConcentrationViewController.h */,
+				754E55A714A15F82003E8E6F /* ConcentrationViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		06579A0614A23CF100474588 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				754E55A314A15F82003E8E6F /* SNMAppDelegate.h */,
+				754E55A414A15F82003E8E6F /* SNMAppDelegate.m */,
+			);
+			name = AppDelegate;
 			sourceTree = "<group>";
 		};
 		754E558514A15F82003E8E6F = {
@@ -149,10 +174,9 @@
 			children = (
 				065799FD14A2394D00474588 /* Resources */,
 				754E55D314A16876003E8E6F /* Categories */,
-				754E55A314A15F82003E8E6F /* SNMAppDelegate.h */,
-				754E55A414A15F82003E8E6F /* SNMAppDelegate.m */,
-				754E55A614A15F82003E8E6F /* ConcentrationViewController.h */,
-				754E55A714A15F82003E8E6F /* ConcentrationViewController.m */,
+				06579A0614A23CF100474588 /* AppDelegate */,
+				06579A0514A23CE900474588 /* Controllers */,
+				06579A0414A23CD800474588 /* CALayers */,
 				065799FC14A22FE900474588 /* UIViews */,
 				754E559B14A15F82003E8E6F /* Supporting Files */,
 			);
