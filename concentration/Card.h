@@ -7,7 +7,7 @@
 //
 
 #import <QuartzCore/QuartzCore.h>
-#import <AudioToolbox/AudioToolbox.h>
+#import "SoundUtil.h"
 
 typedef enum {
     Robot,
@@ -30,16 +30,18 @@ typedef enum {
 } CardStatus;
 
 @interface Card : CATransformLayer {
-    
-    SystemSoundID turnEffect;
     BOOL enabled;
-    
 }
+
 @property (nonatomic) CardType type;
 @property (nonatomic) CardStatus status;
 @property (nonatomic) int identifier;
+@property (nonatomic, retain) SoundUtil *soundUtil;
+
 - (id)initWithType:(CardType)theType andFrame:(CGRect)frame andIdentifier:(int)ident;
 - (void)flip;
 - (void)matched;
 - (void)notMatched;
+- (void)flipOver;
+- (void)flipBack;
 @end

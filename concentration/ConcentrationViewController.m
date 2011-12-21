@@ -9,8 +9,6 @@
 #import "ConcentrationViewController.h"
 #import "NSMutableArray+Shuffling.h"
 
-#define NUM_CARDS 24
-
 @implementation ConcentrationViewController
 
 @synthesize board=_board, cards=_cards;

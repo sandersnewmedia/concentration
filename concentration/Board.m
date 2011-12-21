@@ -11,8 +11,8 @@
 
 #define NUM_ROWS    4
 #define NUM_COLS    4
-#define CARD_WIDTH  100
-#define CARD_HEIGHT 100
+#define CARD_WIDTH  150
+#define CARD_HEIGHT 150
 #define PADDING     8
 
 @interface Board() {
@@ -21,14 +21,14 @@
 @property (nonatomic, assign) NSArray *cards;
 - (void)drawBoard;
 - (void)clearBoard;
-- (void)playSound;
 - (void)showPeek;
 - (void)hidePeek;
+- (void)updateScore;
 @end
 
 @implementation Board
 
-@synthesize cards, cardLayers=_cardLayers, currentCard;
+@synthesize cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil;
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -41,8 +41,10 @@
 
 - (id)initWithCards:(NSArray *)theCards
 {
-    if(self = [self initWithFrame:CGRectMake(300, 20, 700, 500)]) {
+    if(self = [self initWithFrame:CGRectMake(200,50,824,718)]) {
         self.cards = theCards;
+        matches = 0;
+        attempts = 0;
         [self drawBoard];
         [self showPeek];
     }
@@ -57,9 +59,17 @@
     return _cardLayers;
 }
 
+- (SoundUtil *)soundUtil
+{
+    if(!_soundUtil) {
+        _soundUtil = [[SoundUtil alloc] init];
+    }
+    return _soundUtil;
+}
+
 - (void)dealloc
 {
-    AudioServicesDisposeSystemSoundID(matchEffect);
+    [_soundUtil release];
     [_cardLayers release];
     [super dealloc];
 }
@@ -76,7 +86,7 @@
         float yLocation = rowCount * (CARD_HEIGHT + PADDING);
         CGRect cardFrame = CGRectMake(xLocation, yLocation, CARD_WIDTH, CARD_HEIGHT);
         
-        if(colCount > NUM_COLS) {
+        if(colCount >= NUM_COLS-1) {
             colCount = 0;
             rowCount ++;
         } else {
@@ -94,7 +104,7 @@
 - (void)showPeek
 {
     for(Card *card in self.cardLayers) {
-        [card flip];
+        [card flipOver];
     }
     [self performSelector:@selector(hidePeek) withObject:nil afterDelay:1];
 }
@@ -102,7 +112,7 @@
 - (void)hidePeek 
 {
     for(Card *card in self.cardLayers) {
-        [card flip];
+        [card flipBack];
     }
 }
 
@@ -116,22 +126,28 @@
     self.cardLayers = nil;
 }
 
+- (void)updateScore
+{
+    [self.soundUtil playSound:Match];
+    //this will send out a notification saying the score has been updated and what its been updated to...
+}
+
 - (void)selectCard:(Card *)card
 {
     if(self.currentCard) {
         if(card.identifier != self.currentCard.identifier) {
             [card flip];
-            if(card.type == self.currentCard.type) {
-                //MATCH!
+            if(card.type == self.currentCard.type) {        //MATCH
                 [card matched];
                 [self.currentCard matched];
-                [self playSound];
-            } else {
+                matches++;
+                [self updateScore];
+            } else {                                        //NO MATCH
                 [card notMatched];
                 [self.currentCard notMatched];
-                //NO MATCH!
             }
             self.currentCard = nil;
+            attempts ++;
         } 
     } else {
         [card flip];
@@ -147,21 +163,6 @@
                 [self selectCard:card];
             }
         }
-    }
-}
-
-- (void)playSound
-{
-    NSString *path  = [[NSBundle mainBundle] pathForResource:@"match" ofType:@"wav"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:path])
-    {
-        NSURL *pathURL = [NSURL fileURLWithPath : path];
-        AudioServicesCreateSystemSoundID((CFURLRef) pathURL, &matchEffect);
-        AudioServicesPlaySystemSound(matchEffect);
-    }
-    else
-    {
-        NSLog(@"error, file not found: %@", path);
     }
 }
 

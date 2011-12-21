@@ -11,8 +11,12 @@
 #import "Card.h"
 
 @interface Board : UIView {
+    int matches;
+    int attempts;
 }
 - (id)initWithCards:(NSArray *)theCards;
 @property (nonatomic, retain) NSMutableArray *cardLayers;
 @property (nonatomic, assign) Card *currentCard;
+@property (nonatomic, retain) SoundUtil *soundUtil;
+
 @end

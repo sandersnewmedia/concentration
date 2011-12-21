@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AudioToolbox/AudioToolbox.h>
 
-@interface SoundUtil : NSObject
+typedef enum { Match, Flip, LevelComplete } SoundType;
+
+@interface SoundUtil : NSObject {
+    SystemSoundID sound;
+}
+
+- (void) playSound:(SoundType)type;
 
 @end

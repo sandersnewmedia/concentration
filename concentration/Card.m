@@ -12,13 +12,19 @@
 
 @interface Card()
 - (void)playSound;
-- (void)flipOver;
-- (void)flipBack;
 @end
 
 @implementation Card
 
-@synthesize identifier, type, status;
+@synthesize identifier, type, status, soundUtil=_soundUtil;
+
+- (SoundUtil *)soundUtil
+{
+    if(!_soundUtil) {
+        _soundUtil = [[SoundUtil alloc] init];
+    }
+    return _soundUtil;
+}
 
 - (id)initWithType:(CardType)theType andFrame:(CGRect)frame andIdentifier:(int)ident
 {
@@ -128,25 +134,15 @@
     [self performSelector:@selector(flipBack) withObject:nil afterDelay:ANIMATION_SPEED];
 }
 
-- (void)playSound
-{
-    NSString *path  = [[NSBundle mainBundle] pathForResource:@"page-flip-2" ofType:@"wav"];
-    if ([[NSFileManager defaultManager] fileExistsAtPath : path])
-    {
-        NSURL *pathURL = [NSURL fileURLWithPath : path];
-        AudioServicesCreateSystemSoundID((CFURLRef) pathURL, &turnEffect);
-        AudioServicesPlaySystemSound(turnEffect);
-    }
-    else
-    {
-        NSLog(@"error, file not found: %@", path);
-    }
-}
-
 - (void)dealloc
 {
-    AudioServicesDisposeSystemSoundID(turnEffect);
+    [_soundUtil release];
     [super dealloc];
+}
+
+- (void) playSound
+{
+    [self.soundUtil playSound:Flip];
 }
 
 @end
