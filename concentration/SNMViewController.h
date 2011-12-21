@@ -7,7 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Board.h"
 
-@interface SNMViewController : UIViewController
+@interface SNMViewController : UIViewController {
+    int turns;
+    int time;
+    int level;
+}
+
+@property (nonatomic, retain) Board *board;
+@property (nonatomic, retain) NSArray *cards;
 
 @end

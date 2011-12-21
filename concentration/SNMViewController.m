@@ -8,7 +8,46 @@
 
 #import "SNMViewController.h"
 
+#define NUM_CARDS 24
+
 @implementation SNMViewController
+
+@synthesize board=_board, cards=_cards;
+
+- (Board *)board 
+{
+    if(!_board) {
+        //todo: add customizable board sizes
+        _board = [[Board alloc] initWithCards:self.cards];
+    }
+    return _board;
+}
+
+- (NSArray *)cards
+{
+    if(!_cards) {
+        _cards = [[NSArray alloc] initWithObjects:[UIColor blueColor], [UIColor redColor], [UIColor greenColor], [UIColor yellowColor],[UIColor blueColor], [UIColor redColor], [UIColor greenColor], [UIColor yellowColor], nil];
+    }
+    return _cards;
+}
+
+- (id)init
+{
+    if(self = [super init]) {
+        //todo check for existing games
+        turns   = 0;
+        time    = 0;
+        level   = 0;
+    }
+    return self;
+}
+
+- (void)dealloc
+{
+    [_cards release];
+    [_board release];
+    [super dealloc];
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -21,40 +60,23 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    [self.view addSubview:self.board];
+	
 }
 
 - (void)viewDidUnload
 {
+    self.board = nil;
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated
-{
-	[super viewWillDisappear:animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated
-{
-	[super viewDidDisappear:animated];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
-    // Return YES for supported orientations
-    return YES;
+    if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
+        return YES;
+    }
+    
+    return NO;
 }
 
 @end

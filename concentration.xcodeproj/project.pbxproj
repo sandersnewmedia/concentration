@@ -20,6 +20,9 @@
 		754E55B514A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
 		754E55BD14A15F82003E8E6F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 754E55BB14A15F82003E8E6F /* InfoPlist.strings */; };
 		754E55C014A15F83003E8E6F /* concentrationTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55BF14A15F83003E8E6F /* concentrationTests.m */; };
+		754E55CC14A16106003E8E6F /* Board.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55CB14A16106003E8E6F /* Board.m */; };
+		754E55CE14A16319003E8E6F /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E55CD14A16319003E8E6F /* QuartzCore.framework */; };
+		754E55D614A16888003E8E6F /* NSMutableArray+Shuffling.m in Sources */ = {isa = PBXBuildFile; fileRef = 754E55D514A16888003E8E6F /* NSMutableArray+Shuffling.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,21 +40,26 @@
 		754E559414A15F82003E8E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		754E559614A15F82003E8E6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		754E559814A15F82003E8E6F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
-		754E559C14A15F82003E8E6F /* concentration-Info.plist */ = {isa = PBXFileReference; path = "concentration-Info.plist"; sourceTree = "<group>"; };
+		754E559C14A15F82003E8E6F /* concentration-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "concentration-Info.plist"; sourceTree = "<group>"; };
 		754E559E14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		754E55A014A15F82003E8E6F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		754E55A214A15F82003E8E6F /* concentration-Prefix.pch */ = {isa = PBXFileReference; path = "concentration-Prefix.pch"; sourceTree = "<group>"; };
-		754E55A314A15F82003E8E6F /* SNMAppDelegate.h */ = {isa = PBXFileReference; path = SNMAppDelegate.h; sourceTree = "<group>"; };
+		754E55A214A15F82003E8E6F /* concentration-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "concentration-Prefix.pch"; sourceTree = "<group>"; };
+		754E55A314A15F82003E8E6F /* SNMAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNMAppDelegate.h; sourceTree = "<group>"; };
 		754E55A414A15F82003E8E6F /* SNMAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNMAppDelegate.m; sourceTree = "<group>"; };
-		754E55A614A15F82003E8E6F /* SNMViewController.h */ = {isa = PBXFileReference; path = SNMViewController.h; sourceTree = "<group>"; };
+		754E55A614A15F82003E8E6F /* SNMViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SNMViewController.h; sourceTree = "<group>"; };
 		754E55A714A15F82003E8E6F /* SNMViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SNMViewController.m; sourceTree = "<group>"; };
 		754E55AA14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/SNMViewController.xib; sourceTree = "<group>"; };
 		754E55B114A15F82003E8E6F /* concentrationTests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = concentrationTests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		754E55B214A15F82003E8E6F /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		754E55BA14A15F82003E8E6F /* concentrationTests-Info.plist */ = {isa = PBXFileReference; path = "concentrationTests-Info.plist"; sourceTree = "<group>"; };
+		754E55BA14A15F82003E8E6F /* concentrationTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "concentrationTests-Info.plist"; sourceTree = "<group>"; };
 		754E55BC14A15F82003E8E6F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		754E55BE14A15F83003E8E6F /* concentrationTests.h */ = {isa = PBXFileReference; path = concentrationTests.h; sourceTree = "<group>"; };
+		754E55BE14A15F83003E8E6F /* concentrationTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = concentrationTests.h; sourceTree = "<group>"; };
 		754E55BF14A15F83003E8E6F /* concentrationTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = concentrationTests.m; sourceTree = "<group>"; };
+		754E55CA14A16106003E8E6F /* Board.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Board.h; sourceTree = "<group>"; };
+		754E55CB14A16106003E8E6F /* Board.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Board.m; sourceTree = "<group>"; };
+		754E55CD14A16319003E8E6F /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		754E55D414A16888003E8E6F /* NSMutableArray+Shuffling.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Shuffling.h"; sourceTree = "<group>"; };
+		754E55D514A16888003E8E6F /* NSMutableArray+Shuffling.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Shuffling.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				754E55CE14A16319003E8E6F /* QuartzCore.framework in Frameworks */,
 				754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */,
 				754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */,
 				754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */,
@@ -81,6 +90,7 @@
 		754E558514A15F82003E8E6F = {
 			isa = PBXGroup;
 			children = (
+				754E55CD14A16319003E8E6F /* QuartzCore.framework */,
 				754E559A14A15F82003E8E6F /* concentration */,
 				754E55B814A15F82003E8E6F /* concentrationTests */,
 				754E559314A15F82003E8E6F /* Frameworks */,
@@ -111,12 +121,15 @@
 		754E559A14A15F82003E8E6F /* concentration */ = {
 			isa = PBXGroup;
 			children = (
+				754E55D314A16876003E8E6F /* Categories */,
 				754E55A314A15F82003E8E6F /* SNMAppDelegate.h */,
 				754E55A414A15F82003E8E6F /* SNMAppDelegate.m */,
 				754E55A614A15F82003E8E6F /* SNMViewController.h */,
 				754E55A714A15F82003E8E6F /* SNMViewController.m */,
 				754E55A914A15F82003E8E6F /* SNMViewController.xib */,
 				754E559B14A15F82003E8E6F /* Supporting Files */,
+				754E55CA14A16106003E8E6F /* Board.h */,
+				754E55CB14A16106003E8E6F /* Board.m */,
 			);
 			path = concentration;
 			sourceTree = "<group>";
@@ -149,6 +162,15 @@
 				754E55BB14A15F82003E8E6F /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		754E55D314A16876003E8E6F /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				754E55D414A16888003E8E6F /* NSMutableArray+Shuffling.h */,
+				754E55D514A16888003E8E6F /* NSMutableArray+Shuffling.m */,
+			);
+			name = Categories;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +283,8 @@
 				754E55A114A15F82003E8E6F /* main.m in Sources */,
 				754E55A514A15F82003E8E6F /* SNMAppDelegate.m in Sources */,
 				754E55A814A15F82003E8E6F /* SNMViewController.m in Sources */,
+				754E55CC14A16106003E8E6F /* Board.m in Sources */,
+				754E55D614A16888003E8E6F /* NSMutableArray+Shuffling.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
