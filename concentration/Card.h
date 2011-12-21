@@ -23,15 +23,23 @@ typedef enum {
     Royden
 } CardType;
 
+typedef enum {
+    Normal,
+    Flipped,
+    Matched
+} CardStatus;
+
 @interface Card : CATransformLayer {
     
     SystemSoundID turnEffect;
+    BOOL enabled;
     
 }
-
-@property (nonatomic, assign) int type;
-
-- (id)initWithType:(CardType)theType andFrame:(CGRect)frame;
+@property (nonatomic) CardType type;
+@property (nonatomic) CardStatus status;
+@property (nonatomic) int identifier;
+- (id)initWithType:(CardType)theType andFrame:(CGRect)frame andIdentifier:(int)ident;
 - (void)flip;
-
+- (void)matched;
+- (void)notMatched;
 @end

@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import "Card.h"
 
 @interface Board : UIView {
-   
 }
 - (id)initWithCards:(NSArray *)theCards;
 @property (nonatomic, retain) NSMutableArray *cardLayers;
+@property (nonatomic, assign) Card *currentCard;
 @end

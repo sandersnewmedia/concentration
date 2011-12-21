@@ -10,6 +10,8 @@
 		065799FB14A22FE400474588 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 065799FA14A22FE400474588 /* Card.m */; };
 		065799FF14A2395D00474588 /* page-flip-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 065799FE14A2395D00474588 /* page-flip-2.wav */; };
 		06579A0314A23B4C00474588 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06579A0214A23B4C00474588 /* AudioToolbox.framework */; };
+		06579A0A14A2472400474588 /* match.wav in Resources */ = {isa = PBXBuildFile; fileRef = 06579A0914A2472400474588 /* match.wav */; };
+		06579A0E14A249B000474588 /* SoundUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 06579A0D14A249B000474588 /* SoundUtil.m */; };
 		754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
 		754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
 		754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559814A15F82003E8E6F /* CoreGraphics.framework */; };
@@ -42,6 +44,9 @@
 		065799FA14A22FE400474588 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		065799FE14A2395D00474588 /* page-flip-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "page-flip-2.wav"; sourceTree = "<group>"; };
 		06579A0214A23B4C00474588 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		06579A0914A2472400474588 /* match.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = match.wav; sourceTree = "<group>"; };
+		06579A0C14A249B000474588 /* SoundUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundUtil.h; sourceTree = "<group>"; };
+		06579A0D14A249B000474588 /* SoundUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundUtil.m; sourceTree = "<group>"; };
 		754E559014A15F82003E8E6F /* concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754E559414A15F82003E8E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		754E559614A15F82003E8E6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -105,6 +110,7 @@
 		065799FD14A2394D00474588 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				06579A0914A2472400474588 /* match.wav */,
 				065799FE14A2395D00474588 /* page-flip-2.wav */,
 			);
 			name = Resources;
@@ -135,6 +141,15 @@
 				754E55A414A15F82003E8E6F /* SNMAppDelegate.m */,
 			);
 			name = AppDelegate;
+			sourceTree = "<group>";
+		};
+		06579A0B14A249A300474588 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				06579A0C14A249B000474588 /* SoundUtil.h */,
+				06579A0D14A249B000474588 /* SoundUtil.m */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 		754E558514A15F82003E8E6F = {
@@ -172,6 +187,7 @@
 		754E559A14A15F82003E8E6F /* concentration */ = {
 			isa = PBXGroup;
 			children = (
+				06579A0B14A249A300474588 /* Utils */,
 				065799FD14A2394D00474588 /* Resources */,
 				754E55D314A16876003E8E6F /* Categories */,
 				06579A0614A23CF100474588 /* AppDelegate */,
@@ -295,6 +311,7 @@
 			files = (
 				754E559F14A15F82003E8E6F /* InfoPlist.strings in Resources */,
 				065799FF14A2395D00474588 /* page-flip-2.wav in Resources */,
+				06579A0A14A2472400474588 /* match.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +352,7 @@
 				754E55CC14A16106003E8E6F /* Board.m in Sources */,
 				754E55D614A16888003E8E6F /* NSMutableArray+Shuffling.m in Sources */,
 				065799FB14A22FE400474588 /* Card.m in Sources */,
+				06579A0E14A249B000474588 /* SoundUtil.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,30 +8,71 @@
 
 #import "Card.h"
 
+#define ANIMATION_SPEED .5
+
 @interface Card()
 - (void)playSound;
+- (void)flipOver;
+- (void)flipBack;
 @end
 
 @implementation Card
 
-@synthesize type;
+@synthesize identifier, type, status;
 
-- (id)initWithType:(CardType)theType andFrame:(CGRect)frame
+- (id)initWithType:(CardType)theType andFrame:(CGRect)frame andIdentifier:(int)ident
 {
     if(self = [self init]) {
         self.type   = theType;
         self.frame  = frame;
+        self.status = Normal;
+        self.identifier = ident;
+        enabled = YES;
         
         CATransformLayer *layer = [CATransformLayer new];
         CALayer *backLayer = [CALayer new];
-        [backLayer setBackgroundColor:[UIColor lightGrayColor].CGColor];
         CALayer *frontLayer = [CALayer new];
-        [frontLayer setBackgroundColor:[UIColor blueColor].CGColor];
-         
+        
+        UIColor *cardColor;     //temporary way to identify cards
+        
+        switch (self.type) {
+            case Robot:
+                cardColor = [UIColor redColor];
+                break;
+            case Rocket:
+                cardColor = [UIColor blueColor];
+                break;
+            case Grandpa:
+                cardColor = [UIColor greenColor];
+                break;
+            case Mom:
+                cardColor = [UIColor grayColor];
+                break;
+            case Dad:
+                cardColor = [UIColor yellowColor];
+                break;
+            case Brent:
+                cardColor = [UIColor orangeColor];
+                break;
+            case Scott:
+                cardColor = [UIColor purpleColor];
+                break;
+            case Elijah:
+                cardColor = [UIColor brownColor];
+                break;
+            default:
+                cardColor = [UIColor blackColor];
+                break;
+        }
+        
+        [backLayer setBackgroundColor:[UIColor whiteColor].CGColor];
+        [frontLayer setBackgroundColor:cardColor.CGColor];
         frontLayer.zPosition = 0;
         backLayer.zPosition = 1;
         frontLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
         backLayer.frame = CGRectMake(0, 0, self.frame.size.width, self.frame.size.height);
+        frontLayer.cornerRadius = 3;
+        backLayer.cornerRadius = 3;
         [layer addSublayer:backLayer];
         [layer addSublayer:frontLayer];
         
@@ -45,11 +86,46 @@
 
 - (void)flip
 {
+    if(enabled) {
+        if(self.status == Normal) {
+            [self flipOver];
+            [self playSound];
+        } else {
+            [self flipBack];
+        }
+    }
+}
+
+- (void)flipOver
+{
     [CATransaction begin];
-    [CATransaction setAnimationDuration:1.0];
+    [CATransaction setAnimationDuration:ANIMATION_SPEED];
     self.transform = CATransform3DMakeRotation(M_PI, 0, 1, 0);
     [CATransaction commit];
-    [self playSound];
+    self.status = Flipped;
+}
+
+- (void)flipBack
+{
+    if(self.status != Matched) {
+        [CATransaction begin];
+        [CATransaction setAnimationDuration:ANIMATION_SPEED];
+        self.transform = CATransform3DMakeRotation(-M_PI, 0, 0, 0);
+        [CATransaction commit];
+        self.status = Normal;
+    }
+}
+
+- (void)matched
+{
+    [self flipOver];
+    self.status = Matched;
+    enabled = NO;
+}
+
+- (void)notMatched
+{
+    [self performSelector:@selector(flipBack) withObject:nil afterDelay:ANIMATION_SPEED];
 }
 
 - (void)playSound
