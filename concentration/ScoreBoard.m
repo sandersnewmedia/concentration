@@ -8,9 +8,14 @@
 
 #import "ScoreBoard.h"
 
+@interface ScoreBoard()
+- (void)tick;
+@end
+
 @implementation ScoreBoard
 
 @synthesize currentTime=_currentTime,currentLevel=_currentLevel,currentScore=_currentScore,restartButton=_restartButton;
+@synthesize clock=_clock, levelStartTime;
 
 - (void)restartButtonPressed
 {
@@ -60,19 +65,46 @@
     return _restartButton;
 }
 
+- (NSTimer *)clock
+{
+    if(!_clock) {
+        _clock = [[NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(tick) userInfo:nil repeats:YES] retain];
+    }
+    return _clock;
+}
+
 - (void)dealloc 
 {
+    [_clock release];
     [_restartButton release];
     [_currentLevel release];
     [_currentTime release];
     [super dealloc];
 }
 
+- (void)tick
+{
+    NSLog(@"tick");
+}
+
 - (void)updateScore:(NSNotification *)notif
 {
     int matches = [[[notif userInfo] objectForKey:@"matches"] intValue];
     int attempts = [[[notif userInfo] objectForKey:@"attempts"] intValue];
+    int level = [[[notif userInfo] objectForKey:@"level"] intValue];
     self.currentScore.text = [NSString stringWithFormat:@"%d/%d", matches, attempts];
+    self.currentLevel.text = [NSString stringWithFormat:@"Level %d", level];
+}
+
+- (void)startTimer:(NSNotification *)notif
+{
+    self.levelStartTime = [notif.userInfo objectForKey:@"startTime"];
+    self.currentTime.text = @"00:00";
+    [self.clock fire];
+}
+- (void)stopTimer
+{
+    self.clock = nil;
 }
 
 - (void)awakeFromNib
@@ -82,6 +114,8 @@
     [self addSubview:self.currentLevel];
     [self addSubview:self.restartButton];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScore:) name:@"updateScore" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startTimer:) name:@"startTime" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTimer) name:@"stopTime" object:nil];
 }
 
 

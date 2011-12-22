@@ -15,5 +15,7 @@
 @property (nonatomic, retain) UILabel *currentTime;
 @property (nonatomic, retain) UILabel *currentScore;
 @property (nonatomic, retain) UIButton *restartButton;
+@property (nonatomic, assign) NSDate *levelStartTime;
+@property (nonatomic, retain) NSTimer *clock;
 
 @end

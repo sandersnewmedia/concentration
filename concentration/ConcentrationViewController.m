@@ -10,6 +10,8 @@
 
 @interface ConcentrationViewController()
 - (void)nextLevel;
+- (NSDictionary *)scoreDict;
+- (NSDictionary *)timeDict;
 @end
 
 @implementation ConcentrationViewController
@@ -47,16 +49,24 @@
 }
 
 #pragma mark - Game Logic
+- (void)gameStart
+{
+    self.levelStartTime = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"startTime" object:nil userInfo:[self timeDict]];
+    [self.board hidePeek];
+}
 
 - (void)nextLevel
 {
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"stopTime" object:nil];
     self.currentLevel++;
     [self.board drawBoard];
     int delay = 5 - self.currentLevel;
     if(delay > 0) {
         [self.board showPeek];
-        [self.board performSelector:@selector(hidePeek) withObject:nil afterDelay:delay];
+        [self performSelector:@selector(gameStart) withObject:nil afterDelay:delay];
     }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
 }
 
 #pragma mark - View lifecycle
@@ -65,7 +75,7 @@
 {
     [super viewDidLoad];
     self.board.delegate = self;
-    self.currentLevel = 1;
+    self.currentLevel = 0;
     self.currentScore = 0;
     [self nextLevel];
 }
@@ -94,17 +104,29 @@
 {
     NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
                            [NSNumber numberWithInt:self.board.matches],  @"matches",
-                           [NSNumber numberWithInt:self.board.attempts], @"attempts",nil] autorelease];
+                           [NSNumber numberWithInt:self.board.attempts], @"attempts",
+                           [NSNumber numberWithInt:self.currentLevel], @"level", nil] autorelease];
+    return dict;
+}
+
+- (NSDictionary *)timeDict
+{
+    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:self.levelStartTime, @"startTime",nil] autorelease];
     return dict;
 }
 
 - (void)updateScore
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
     if(self.board.matches == ([self.board.cardLayers count]/2)) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Level Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" 
+                                                        message:@"Level Complete" 
+                                                       delegate:self 
+                                              cancelButtonTitle:@"OK" 
+                                              otherButtonTitles:nil];
         [alert show];
         [alert release];
+    } else {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
     }
 }
 
