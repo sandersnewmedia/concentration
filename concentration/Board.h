@@ -23,4 +23,8 @@
 @property (nonatomic) int attempts;
 @property (nonatomic) int matches;
 
+- (void)drawBoard;
+- (void)showPeek;
+- (void)hidePeek;
+
 @end

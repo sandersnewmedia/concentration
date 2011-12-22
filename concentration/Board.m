@@ -20,10 +20,7 @@
     SystemSoundID matchEffect;
 }
 @property (nonatomic, assign) NSArray *cards;
-- (void)drawBoard;
 - (void)clearBoard;
-- (void)showPeek;
-- (void)hidePeek;
 @end
 
 @implementation Board
@@ -122,7 +119,6 @@
     for(Card *card in self.cardLayers) {
         [card flipOver];
     }
-    [self performSelector:@selector(hidePeek) withObject:nil afterDelay:1];
 }
 
 - (void)hidePeek 
@@ -139,6 +135,9 @@
         [card removeAllAnimations];
         [card removeFromSuperlayer];
     }
+    self.cards = nil;
+    self.attempts = 0;
+    self.matches = 0;
     self.cardLayers = nil;
 }
 

@@ -8,9 +8,13 @@
 
 #import "ConcentrationViewController.h"
 
+@interface ConcentrationViewController()
+- (void)nextLevel;
+@end
+
 @implementation ConcentrationViewController
 
-@synthesize board,scoreBoard,soundUtil=_soundUtil;
+@synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore, levelStartTime=_levelStartTime;
 
 - (SoundUtil *)soundUtil
 {
@@ -20,16 +24,18 @@
     return _soundUtil;
 }
 
-- (id)init
+- (NSDate *)levelStartTime
 {
-    if(self = [super init]) {
-        
+    if(!_levelStartTime) {
+        _levelStartTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
     }
-    return self;
+    return _levelStartTime;
 }
+
 
 - (void)dealloc
 {
+    [_levelStartTime release];
     [_soundUtil release];
     [super dealloc];
 }
@@ -40,13 +46,28 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
+#pragma mark - Game Logic
+
+- (void)nextLevel
+{
+    self.currentLevel++;
+    [self.board drawBoard];
+    int delay = 5 - self.currentLevel;
+    if(delay > 0) {
+        [self.board showPeek];
+        [self.board performSelector:@selector(hidePeek) withObject:nil afterDelay:delay];
+    }
+}
+
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     self.board.delegate = self;
-	
+    self.currentLevel = 1;
+    self.currentScore = 0;
+    [self nextLevel];
 }
 
 - (void)viewDidUnload
@@ -80,7 +101,18 @@
 - (void)updateScore
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
+    if(self.board.matches == ([self.board.cardLayers count]/2)) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Level Complete" delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
 }
+
+- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
+{
+    [self nextLevel];
+}
+
 
 
 - (void)selectCard:(Card *)card

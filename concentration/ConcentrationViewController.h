@@ -11,12 +11,15 @@
 #import "ScoreBoard.h"
 #import "Card.h"
 
-@interface ConcentrationViewController : UIViewController <BoardDelegate> {
+@interface ConcentrationViewController : UIViewController <BoardDelegate, UIAlertViewDelegate> {
     
 }
 
 @property (nonatomic, retain) IBOutlet Board *board;
 @property (nonatomic, retain) IBOutlet ScoreBoard *scoreBoard;
 @property (nonatomic, retain) SoundUtil *soundUtil;
+@property (nonatomic) int currentLevel;
+@property (nonatomic) int currentScore;
+@property (nonatomic, retain) NSDate *levelStartTime;
 
 @end
