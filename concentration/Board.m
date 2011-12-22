@@ -24,19 +24,17 @@
 - (void)clearBoard;
 - (void)showPeek;
 - (void)hidePeek;
-- (void)updateScore;
 @end
 
 @implementation Board
 
-@synthesize cards=_cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil;
+@synthesize cards=_cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil, delegate,attempts,matches;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if(self = [super initWithCoder:aDecoder]) {
-        attempts = 0;
-        matches  = 0;
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
+        self.attempts = 0;
+        self.matches  = 0;
     }
     return self;
 }
@@ -79,18 +77,9 @@
     return _cardLayers;
 }
 
-- (SoundUtil *)soundUtil
-{
-    if(!_soundUtil) {
-        _soundUtil = [[SoundUtil alloc] init];
-    }
-    return _soundUtil;
-}
-
 - (void)dealloc
 {
     [_cards release];
-    [_soundUtil release];
     [_cardLayers release];
     [super dealloc];
 }
@@ -153,57 +142,13 @@
     self.cardLayers = nil;
 }
 
-- (NSDictionary *)scoreDict
-{
-    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                          [NSNumber numberWithInt:matches],  @"matches",
-                          [NSNumber numberWithInt:attempts], @"attempts",nil] autorelease];
-    return dict;
-}
-
-- (void)updateScore
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
-}
-
-- (void)selectCard:(Card *)card
-{
-    if(self.currentCard) {
-        if(card.identifier != self.currentCard.identifier) {
-            [card flip];
-            if(card.type == self.currentCard.type) {        //MATCH
-                [card matched];
-                [self.currentCard matched];
-                matches++;
-                [self.soundUtil playSound:Match];
-            } else {                                        //NO MATCH
-                [card notMatched];
-                [self.currentCard notMatched];
-            }
-            self.currentCard = nil;
-            attempts ++;
-            [self updateScore];
-        } 
-    } else {
-        [card flip];
-        self.currentCard = card;
-    }
-}
-
-- (void)restart 
-{
-    matches = 0;
-    attempts = 0;
-    [self updateScore];
-    [self drawBoard];
-}
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     if([touches count] == 1) {
         CGPoint point = [[touches anyObject] locationInView:self];
         for(Card *card in self.cardLayers) {
             if([card containsPoint:[self.layer convertPoint:point toLayer:card]]) {
-                [self selectCard:card];
+                [self.delegate selectCard:card];
             }
         }
     }

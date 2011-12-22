@@ -10,7 +10,15 @@
 
 @implementation ConcentrationViewController
 
-@synthesize board,scoreBoard;
+@synthesize board,scoreBoard,soundUtil=_soundUtil;
+
+- (SoundUtil *)soundUtil
+{
+    if(!_soundUtil) {
+        _soundUtil = [[SoundUtil alloc] init];
+    }
+    return _soundUtil;
+}
 
 - (id)init
 {
@@ -22,6 +30,7 @@
 
 - (void)dealloc
 {
+    [_soundUtil release];
     [super dealloc];
 }
 
@@ -36,11 +45,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.board.delegate = self;
 	
 }
 
 - (void)viewDidUnload
 {
+    self.board.delegate = nil;
     self.board = nil;
     [super viewDidUnload];
 }
@@ -57,6 +68,45 @@
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
     [self.board touchesBegan:touches withEvent:event];
 }
+
+- (NSDictionary *)scoreDict
+{
+    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                           [NSNumber numberWithInt:self.board.matches],  @"matches",
+                           [NSNumber numberWithInt:self.board.attempts], @"attempts",nil] autorelease];
+    return dict;
+}
+
+- (void)updateScore
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
+}
+
+
+- (void)selectCard:(Card *)card
+{
+    if(self.board.currentCard) {
+        if(card.identifier != self.board.currentCard.identifier) {
+            [card flip];
+            if(card.type == self.board.currentCard.type) {        //MATCH
+                [card matched];
+                [self.board.currentCard matched];
+                self.board.matches++;
+                [self.soundUtil playSound:Match];
+            } else {                                        //NO MATCH
+                [card notMatched];
+                [self.board.currentCard notMatched];
+            }
+            self.board.currentCard = nil;
+            self.board.attempts ++;
+            [self updateScore];
+        } 
+    } else {
+        [card flip];
+        self.board.currentCard = card;
+    }
+}
+
 
 
 @end

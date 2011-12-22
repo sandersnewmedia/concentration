@@ -11,11 +11,12 @@
 #import "ScoreBoard.h"
 #import "Card.h"
 
-@interface ConcentrationViewController : UIViewController {
+@interface ConcentrationViewController : UIViewController <BoardDelegate> {
     
 }
 
 @property (nonatomic, retain) IBOutlet Board *board;
 @property (nonatomic, retain) IBOutlet ScoreBoard *scoreBoard;
+@property (nonatomic, retain) SoundUtil *soundUtil;
 
 @end
