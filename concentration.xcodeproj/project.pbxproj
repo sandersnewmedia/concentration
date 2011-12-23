@@ -15,6 +15,8 @@
 		06579A1914A25E5E00474588 /* ConcentrationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 06579A1814A25E5E00474588 /* ConcentrationViewController.xib */; };
 		06579A1E14A26F9E00474588 /* ScoreBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = 06579A1D14A26F9E00474588 /* ScoreBoard.m */; };
 		750264E314A4DA2400204A2C /* win-sound.wav in Resources */ = {isa = PBXBuildFile; fileRef = 750264E214A4DA2400204A2C /* win-sound.wav */; };
+		750264EC14A4F7DD00204A2C /* ScoreOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750264EA14A4F7DD00204A2C /* ScoreOverlayViewController.xib */; };
+		750264F014A4F8D200204A2C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 750264EF14A4F8D200204A2C /* Score.m */; };
 		754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
 		754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
 		754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559814A15F82003E8E6F /* CoreGraphics.framework */; };
@@ -54,6 +56,9 @@
 		06579A1C14A26F9E00474588 /* ScoreBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreBoard.h; sourceTree = "<group>"; };
 		06579A1D14A26F9E00474588 /* ScoreBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreBoard.m; sourceTree = "<group>"; };
 		750264E214A4DA2400204A2C /* win-sound.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "win-sound.wav"; sourceTree = "<group>"; };
+		750264EA14A4F7DD00204A2C /* ScoreOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ScoreOverlayViewController.xib; sourceTree = "<group>"; };
+		750264EE14A4F8D200204A2C /* Score.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Score.h; sourceTree = "<group>"; };
+		750264EF14A4F8D200204A2C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		754E559014A15F82003E8E6F /* concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754E559414A15F82003E8E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		754E559614A15F82003E8E6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -174,9 +179,19 @@
 		06579A1214A25E1300474588 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				750264EA14A4F7DD00204A2C /* ScoreOverlayViewController.xib */,
 				06579A1814A25E5E00474588 /* ConcentrationViewController.xib */,
 			);
 			name = NIBs;
+			sourceTree = "<group>";
+		};
+		750264ED14A4F8B800204A2C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				750264EE14A4F8D200204A2C /* Score.h */,
+				750264EF14A4F8D200204A2C /* Score.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 		754E558514A15F82003E8E6F = {
@@ -214,6 +229,7 @@
 		754E559A14A15F82003E8E6F /* concentration */ = {
 			isa = PBXGroup;
 			children = (
+				750264ED14A4F8B800204A2C /* Model */,
 				06579A0B14A249A300474588 /* Utils */,
 				065799FD14A2394D00474588 /* Resources */,
 				754E55D314A16876003E8E6F /* Categories */,
@@ -341,6 +357,7 @@
 				06579A0A14A2472400474588 /* match.wav in Resources */,
 				06579A1914A25E5E00474588 /* ConcentrationViewController.xib in Resources */,
 				750264E314A4DA2400204A2C /* win-sound.wav in Resources */,
+				750264EC14A4F7DD00204A2C /* ScoreOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +400,7 @@
 				065799FB14A22FE400474588 /* Card.m in Sources */,
 				06579A0E14A249B000474588 /* SoundUtil.m in Sources */,
 				06579A1E14A26F9E00474588 /* ScoreBoard.m in Sources */,
+				750264F014A4F8D200204A2C /* Score.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
