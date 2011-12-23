@@ -22,7 +22,7 @@
             path  = [[NSBundle mainBundle] pathForResource:@"page-flip-2" ofType:@"wav"];
             break;
         case LevelComplete:
-            path  = [[NSBundle mainBundle] pathForResource:@"page-flip-2" ofType:@"wav"];
+            path  = [[NSBundle mainBundle] pathForResource:@"win-sound" ofType:@"wav"];
             break;
     }
     

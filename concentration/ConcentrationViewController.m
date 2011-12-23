@@ -58,7 +58,7 @@
 
 - (void)nextLevel
 {
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"stopTime" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearTime" object:nil];
     self.currentLevel++;
     [self.board drawBoard];
     int delay = 5 - self.currentLevel;
@@ -118,6 +118,7 @@
 - (void)updateScore
 {
     if(self.board.matches == ([self.board.cardLayers count]/2)) {
+        [self.soundUtil playSound:LevelComplete];
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" 
                                                         message:@"Level Complete" 
                                                        delegate:self 
@@ -125,6 +126,7 @@
                                               otherButtonTitles:nil];
         [alert show];
         [alert release];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
     }

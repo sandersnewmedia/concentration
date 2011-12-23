@@ -29,6 +29,8 @@
     if(!_currentTime) {
         _currentTime = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, 30)];
         _currentTime.textAlignment = UITextAlignmentCenter;
+        _currentTime.backgroundColor = [UIColor clearColor];
+        _currentTime.textColor = [UIColor whiteColor];
         _currentTime.text = @"0:00";
     }
     return _currentTime;
@@ -39,6 +41,8 @@
     if(!_currentLevel) {
         _currentLevel = [[UILabel alloc] initWithFrame:CGRectMake(0, 40, self.frame.size.width, 30)];
         _currentLevel.textAlignment = UITextAlignmentCenter;
+        _currentLevel.backgroundColor = [UIColor clearColor];
+        _currentLevel.textColor = [UIColor whiteColor];
         _currentLevel.text = @"Level 1";
     }
     return _currentLevel;
@@ -49,6 +53,8 @@
     if(!_currentScore) {
         _currentScore = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width, 30)];
         _currentScore.textAlignment = UITextAlignmentCenter;
+        _currentScore.backgroundColor = [UIColor clearColor];
+        _currentScore.textColor = [UIColor whiteColor];
         _currentScore.text = @"0";
     }
     return _currentScore;
@@ -68,7 +74,7 @@
 - (NSTimer *)clock
 {
     if(!_clock) {
-        _clock = [[NSTimer scheduledTimerWithTimeInterval:.2 target:self selector:@selector(tick) userInfo:nil repeats:YES] retain];
+        _clock = [[NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(tick) userInfo:nil repeats:YES] retain];
     }
     return _clock;
 }
@@ -82,9 +88,15 @@
     [super dealloc];
 }
 
+- (NSString *)getTimeRemainingString {
+    int deltaTime = [[NSDate date] timeIntervalSinceDate:self.levelStartTime];
+    NSLog(@"DELTATIME = %i", deltaTime);
+    return [NSString stringWithFormat:@"%02d:%02d", deltaTime / 60 , deltaTime % 60];
+}
+
 - (void)tick
 {
-    NSLog(@"tick");
+    self.currentTime.text = [self getTimeRemainingString];
 }
 
 - (void)updateScore:(NSNotification *)notif
@@ -96,15 +108,22 @@
     self.currentLevel.text = [NSString stringWithFormat:@"Level %d", level];
 }
 
-- (void)startTimer:(NSNotification *)notif
+- (void)startTimer:(NSNotification *)notif 
 {
     self.levelStartTime = [notif.userInfo objectForKey:@"startTime"];
     self.currentTime.text = @"00:00";
     [self.clock fire];
 }
+
+- (void)clearTimer:(NSNotification *)notif
+{
+    self.currentTime.text = @"00:00";
+    self.clock = nil;
+}
+
 - (void)stopTimer
 {
-    self.clock = nil;
+    [self.clock invalidate];
 }
 
 - (void)awakeFromNib
@@ -115,7 +134,8 @@
     [self addSubview:self.restartButton];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScore:) name:@"updateScore" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startTimer:) name:@"startTime" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTimer) name:@"stopTime" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearTimer:) name:@"clearTime" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTimer) name:@"pauseTime" object:nil];
 }
 
 
