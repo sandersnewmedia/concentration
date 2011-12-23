@@ -10,6 +10,7 @@
 #import "Board.h"
 #import "ScoreBoard.h"
 #import "Card.h"
+#import "ScoreOverlayViewController.h"
 
 @interface ConcentrationViewController : UIViewController <BoardDelegate, UIAlertViewDelegate> {
     
@@ -21,5 +22,6 @@
 @property (nonatomic) int currentLevel;
 @property (nonatomic) int currentScore;
 @property (nonatomic, retain) NSDate *levelStartTime;
+@property (nonatomic, retain) ScoreOverlayViewController *scoreOverlay;
 
 @end

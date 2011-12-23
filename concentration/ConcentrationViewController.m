@@ -18,6 +18,16 @@
 
 @synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore, levelStartTime=_levelStartTime;
 
+@synthesize scoreOverlay=_scoreOverlay;
+
+-(ScoreOverlayViewController *)scoreOverlay
+{
+    if(!_scoreOverlay) {
+        _scoreOverlay = [[ScoreOverlayViewController alloc] initWithNibName:@"ScoreOverlayViewController" bundle:nil];
+    }
+    return _scoreOverlay;
+}
+
 - (SoundUtil *)soundUtil
 {
     if(!_soundUtil) {
@@ -37,6 +47,7 @@
 
 - (void)dealloc
 {
+    [_scoreOverlay release];
     [_levelStartTime release];
     [_soundUtil release];
     [super dealloc];
@@ -78,6 +89,7 @@
     self.currentLevel = 0;
     self.currentScore = 0;
     [self nextLevel];
+    [self.view addSubview:self.scoreOverlay.view];
 }
 
 - (void)viewDidUnload
