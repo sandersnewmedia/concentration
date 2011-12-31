@@ -9,9 +9,13 @@
 #import "ScoreOverlayViewController.h"
 #import <QuartzCore/QuartzCore.h>
 
+@interface ScoreOverlayViewController()
+- (NSString *)getTimeRemainingString:(NSDate *)startTime;
+@end
+
 @implementation ScoreOverlayViewController
 
-@synthesize time, score, attempts;
+@synthesize time, score, attempts, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,12 +26,25 @@
     return self;
 }
 
+- (void)updateScore:(NSDictionary *)dict
+{
+    self.time.text = [self getTimeRemainingString:(NSDate *)[dict objectForKey:@"startTime"]];
+    self.attempts.text = [[dict objectForKey:@"attempts"] stringValue];
+    self.score.text = @"TBD";
+}
+
 - (void)didReceiveMemoryWarning
 {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
     // Release any cached data, images, etc that aren't in use.
+}
+
+- (NSString *)getTimeRemainingString:(NSDate *)startTime {
+    int deltaTime = [[NSDate date] timeIntervalSinceDate:startTime];
+    NSLog(@"DELTATIME = %i", deltaTime);
+    return [NSString stringWithFormat:@"%02d:%02d", deltaTime / 60 , deltaTime % 60];
 }
 
 #pragma mark - View lifecycle
@@ -56,5 +73,10 @@
     }
     
     return NO;
+}
+
+- (IBAction)continue
+{
+    [self.delegate continue];
 }
 @end

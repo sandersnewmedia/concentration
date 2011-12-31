@@ -17,5 +17,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *time;
 @property (nonatomic, retain) IBOutlet UILabel *score;
 @property (nonatomic, retain) IBOutlet UILabel *attempts;
-
+@property (nonatomic, assign) id <ScoreOverlayDelegate> delegate;
+- (IBAction)continue;
+- (void)updateScore:(NSDictionary *)dict;
 @end

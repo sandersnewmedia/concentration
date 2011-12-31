@@ -12,4 +12,14 @@
 
 @synthesize score,rounds,seconds;
 
+- (id)init
+{
+    if(self = [super init]) {
+        self.score      = 0;
+        self.rounds     = 0;
+        self.seconds    = 0;
+    }
+    return self;
+}
+
 @end

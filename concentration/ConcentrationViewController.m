@@ -10,13 +10,13 @@
 
 @interface ConcentrationViewController()
 - (void)nextLevel;
+- (void)levelComplete;
 - (NSDictionary *)scoreDict;
-- (NSDictionary *)timeDict;
 @end
 
 @implementation ConcentrationViewController
 
-@synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore, levelStartTime=_levelStartTime;
+@synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore=_currentScore, levelStartTime=_levelStartTime;
 
 @synthesize scoreOverlay=_scoreOverlay;
 
@@ -24,6 +24,7 @@
 {
     if(!_scoreOverlay) {
         _scoreOverlay = [[ScoreOverlayViewController alloc] initWithNibName:@"ScoreOverlayViewController" bundle:nil];
+        _scoreOverlay.delegate = self;
     }
     return _scoreOverlay;
 }
@@ -44,11 +45,21 @@
     return _levelStartTime;
 }
 
+- (Score *)currentScore
+{
+    if(!_currentScore) {
+        _currentScore = [[Score alloc] init];
+    }
+    return _currentScore;
+}
+
 
 - (void)dealloc
 {
+    self.scoreOverlay.delegate = nil;
     [_scoreOverlay release];
     [_levelStartTime release];
+    [_currentScore release];
     [_soundUtil release];
     [super dealloc];
 }
@@ -59,26 +70,7 @@
     // Release any cached data, images, etc that aren't in use.
 }
 
-#pragma mark - Game Logic
-- (void)gameStart
-{
-    self.levelStartTime = nil;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"startTime" object:nil userInfo:[self timeDict]];
-    [self.board hidePeek];
-}
 
-- (void)nextLevel
-{
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearTime" object:nil];
-    self.currentLevel++;
-    [self.board drawBoard];
-    int delay = 5 - self.currentLevel;
-    if(delay > 0) {
-        [self.board showPeek];
-        [self performSelector:@selector(gameStart) withObject:nil afterDelay:delay];
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
-}
 
 #pragma mark - View lifecycle
 
@@ -89,7 +81,7 @@
     self.currentLevel = 0;
     self.currentScore = 0;
     [self nextLevel];
-    [self.view addSubview:self.scoreOverlay.view];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
 }
 
 - (void)viewDidUnload
@@ -112,44 +104,63 @@
     [self.board touchesBegan:touches withEvent:event];
 }
 
+
+#pragma mark - Game Logic
+- (void)gameStart
+{
+    self.board.enabled = YES;
+    self.levelStartTime = nil;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"startTime" object:nil userInfo:[self scoreDict]];
+    [self.board hidePeek];
+}
+
+- (void)nextLevel
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"clearTime" object:nil];
+    self.currentLevel++;
+    [self.board drawBoard];
+    int delay = 5/self.currentLevel;
+    [self.board showPeek];
+    [self performSelector:@selector(gameStart) withObject:nil afterDelay:delay];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
+}
+
+- (void)restart
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+    self.currentLevel = 0;
+    self.currentScore = 0;
+    [self nextLevel];
+}
+
 - (NSDictionary *)scoreDict
 {
     NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
                            [NSNumber numberWithInt:self.board.matches],  @"matches",
                            [NSNumber numberWithInt:self.board.attempts], @"attempts",
-                           [NSNumber numberWithInt:self.currentLevel], @"level", nil] autorelease];
+                           [NSNumber numberWithInt:self.currentLevel], @"level", 
+                           self.levelStartTime, @"startTime",
+                           nil] autorelease];
     return dict;
 }
 
-- (NSDictionary *)timeDict
+- (void)levelComplete
 {
-    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:self.levelStartTime, @"startTime",nil] autorelease];
-    return dict;
+    self.board.enabled = NO;
+    [self.soundUtil playSound:LevelComplete];
+    [self.view addSubview:self.scoreOverlay.view];
+    [self.scoreOverlay updateScore:[self scoreDict]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
 }
 
 - (void)updateScore
 {
     if(self.board.matches == ([self.board.cardLayers count]/2)) {
-        [self.soundUtil playSound:LevelComplete];
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" 
-                                                        message:@"Level Complete" 
-                                                       delegate:self 
-                                              cancelButtonTitle:@"OK" 
-                                              otherButtonTitles:nil];
-        [alert show];
-        [alert release];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+        [self levelComplete];
     } else {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"updateScore" object:nil userInfo:[self scoreDict]];
     }
 }
-
-- (void)alertView:(UIAlertView *)alertView willDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    [self nextLevel];
-}
-
-
 
 - (void)selectCard:(Card *)card
 {
@@ -175,6 +186,11 @@
     }
 }
 
-
+#pragma mark - Score Overlay Delegate Methods
+- (void)continue
+{
+    [self.scoreOverlay.view removeFromSuperview];
+    [self nextLevel];
+}
 
 @end

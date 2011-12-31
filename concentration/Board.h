@@ -14,7 +14,7 @@
 - (void)selectCard:(Card *)card;
 @end
 
-@interface Board : UIView
+@interface Board : UIView 
 
 @property (nonatomic, retain) NSMutableArray *cardLayers;
 @property (nonatomic, assign) Card *currentCard;
@@ -22,6 +22,7 @@
 @property (nonatomic, retain) SoundUtil *soundUtil;
 @property (nonatomic) int attempts;
 @property (nonatomic) int matches;
+@property (nonatomic) BOOL enabled;
 
 - (void)drawBoard;
 - (void)showPeek;

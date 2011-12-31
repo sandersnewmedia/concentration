@@ -11,8 +11,9 @@
 #import "ScoreBoard.h"
 #import "Card.h"
 #import "ScoreOverlayViewController.h"
+#import "Score.h"
 
-@interface ConcentrationViewController : UIViewController <BoardDelegate, UIAlertViewDelegate> {
+@interface ConcentrationViewController : UIViewController <BoardDelegate, ScoreOverlayDelegate> {
     
 }
 
@@ -20,7 +21,7 @@
 @property (nonatomic, retain) IBOutlet ScoreBoard *scoreBoard;
 @property (nonatomic, retain) SoundUtil *soundUtil;
 @property (nonatomic) int currentLevel;
-@property (nonatomic) int currentScore;
+@property (nonatomic, retain) Score *currentScore;
 @property (nonatomic, retain) NSDate *levelStartTime;
 @property (nonatomic, retain) ScoreOverlayViewController *scoreOverlay;
 

@@ -25,13 +25,14 @@
 
 @implementation Board
 
-@synthesize cards=_cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil, delegate,attempts,matches;
+@synthesize cards=_cards, cardLayers=_cardLayers, currentCard, soundUtil=_soundUtil, delegate,attempts,matches,enabled;
 
 - (id)initWithCoder:(NSCoder *)aDecoder
 {
     if(self = [super initWithCoder:aDecoder]) {
         self.attempts = 0;
         self.matches  = 0;
+        self.enabled = YES;
     }
     return self;
 }
@@ -116,6 +117,7 @@
 
 - (void)showPeek
 {
+    self.enabled = NO;
     for(Card *card in self.cardLayers) {
         [card flipOver];
     }
@@ -123,6 +125,7 @@
 
 - (void)hidePeek 
 {
+    self.enabled = YES;
     for(Card *card in self.cardLayers) {
         [card flipBack];
     }
@@ -143,7 +146,7 @@
 
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    if([touches count] == 1) {
+    if([touches count] == 1 && self.enabled) {
         CGPoint point = [[touches anyObject] locationInView:self];
         for(Card *card in self.cardLayers) {
             if([card containsPoint:[self.layer convertPoint:point toLayer:card]]) {

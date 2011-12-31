@@ -51,7 +51,7 @@
 - (UILabel *)currentScore
 {
     if(!_currentScore) {
-        _currentScore = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width, 30)];
+        _currentScore = [[UILabel alloc] initWithFrame:CGRectMake(0, 80, self.frame.size.width, 40)];
         _currentScore.textAlignment = UITextAlignmentCenter;
         _currentScore.backgroundColor = [UIColor clearColor];
         _currentScore.textColor = [UIColor whiteColor];
@@ -64,7 +64,7 @@
 {
     if(!_restartButton) {
         _restartButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
-        _restartButton.frame = CGRectMake(0, 120, 100, 30);
+        _restartButton.frame = CGRectMake(0, 120, 180, 30);
         [_restartButton addTarget:self action:@selector(restartButtonPressed) forControlEvents:UIControlEventTouchUpInside];
         _restartButton.titleLabel.text = @"Restart";
     }
