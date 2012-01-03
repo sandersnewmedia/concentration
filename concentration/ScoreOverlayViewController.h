@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Score.h"
 
 @protocol ScoreOverlayDelegate <NSObject>
 - (void)continue;
@@ -18,6 +19,9 @@
 @property (nonatomic, retain) IBOutlet UILabel *score;
 @property (nonatomic, retain) IBOutlet UILabel *attempts;
 @property (nonatomic, assign) id <ScoreOverlayDelegate> delegate;
+@property (nonatomic, assign) Score *currentScore;
 - (IBAction)continue;
 - (void)updateScore:(NSDictionary *)dict;
+
+- (id)initWithScore:(Score *)theScore;
 @end

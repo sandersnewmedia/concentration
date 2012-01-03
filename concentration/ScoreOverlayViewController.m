@@ -15,7 +15,15 @@
 
 @implementation ScoreOverlayViewController
 
-@synthesize time, score, attempts, delegate;
+@synthesize time, score, attempts, delegate, currentScore;
+
+- (id)initWithScore:(Score *)theScore
+{
+    if(self = [self initWithNibName:@"ScoreOverlayViewController" bundle:nil]) {
+        self.currentScore = theScore;
+    }
+    return self;
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,7 +38,8 @@
 {
     self.time.text = [self getTimeRemainingString:(NSDate *)[dict objectForKey:@"startTime"]];
     self.attempts.text = [[dict objectForKey:@"attempts"] stringValue];
-    self.score.text = @"TBD";
+    self.currentScore = (Score *)[dict objectForKey:@"score"];
+    self.score.text = [NSString stringWithFormat:@"%.0f", self.currentScore.score];
 }
 
 - (void)didReceiveMemoryWarning
@@ -43,7 +52,6 @@
 
 - (NSString *)getTimeRemainingString:(NSDate *)startTime {
     int deltaTime = [[NSDate date] timeIntervalSinceDate:startTime];
-    NSLog(@"DELTATIME = %i", deltaTime);
     return [NSString stringWithFormat:@"%02d:%02d", deltaTime / 60 , deltaTime % 60];
 }
 

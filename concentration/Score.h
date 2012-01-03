@@ -10,7 +10,7 @@
 
 @interface Score : NSObject
 
-@property int score;
+@property float score;
 @property int rounds;
 @property int seconds;
 

@@ -12,6 +12,7 @@
 - (void)nextLevel;
 - (void)levelComplete;
 - (NSDictionary *)scoreDict;
+- (void)calculateScore;
 @end
 
 @implementation ConcentrationViewController
@@ -23,7 +24,7 @@
 -(ScoreOverlayViewController *)scoreOverlay
 {
     if(!_scoreOverlay) {
-        _scoreOverlay = [[ScoreOverlayViewController alloc] initWithNibName:@"ScoreOverlayViewController" bundle:nil];
+        _scoreOverlay = [[ScoreOverlayViewController alloc] initWithScore:self.currentScore];
         _scoreOverlay.delegate = self;
     }
     return _scoreOverlay;
@@ -129,7 +130,7 @@
 {
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
     self.currentLevel = 0;
-    self.currentScore = 0;
+    self.currentScore = nil;
     [self nextLevel];
 }
 
@@ -138,7 +139,8 @@
     NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
                            [NSNumber numberWithInt:self.board.matches],  @"matches",
                            [NSNumber numberWithInt:self.board.attempts], @"attempts",
-                           [NSNumber numberWithInt:self.currentLevel], @"level", 
+                           [NSNumber numberWithInt:self.currentLevel], @"level",
+                           self.currentScore, @"score",
                            self.levelStartTime, @"startTime",
                            nil] autorelease];
     return dict;
@@ -146,11 +148,19 @@
 
 - (void)levelComplete
 {
+    //update the value of the current score
+    [self calculateScore];
     self.board.enabled = NO;
     [self.soundUtil playSound:LevelComplete];
     [self.view addSubview:self.scoreOverlay.view];
     [self.scoreOverlay updateScore:[self scoreDict]];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+}
+
+- (void)calculateScore
+{
+    float level_score = 100000 / (float)( self.board.attempts / self.board.matches );
+    self.currentScore.score = self.currentScore.score + level_score;
 }
 
 - (void)updateScore
@@ -167,12 +177,12 @@
     if(self.board.currentCard) {
         if(card.identifier != self.board.currentCard.identifier) {
             [card flip];
-            if(card.type == self.board.currentCard.type) {        //MATCH
+            if(card.type == self.board.currentCard.type) {          //MATCH
                 [card matched];
                 [self.board.currentCard matched];
                 self.board.matches++;
                 [self.soundUtil playSound:Match];
-            } else {                                        //NO MATCH
+            } else {                                                //NO MATCH
                 [card notMatched];
                 [self.board.currentCard notMatched];
             }
