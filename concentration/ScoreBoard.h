@@ -17,7 +17,6 @@
 @property (nonatomic, retain) UIButton *restartButton;
 @property (nonatomic, retain) UIButton *helpButton;
 @property (nonatomic, assign) NSDate *levelStartTime;
-@property (nonatomic, retain) NSDate *pauseStartTime;
 @property (nonatomic, retain) NSTimer *clock;
 
 @end

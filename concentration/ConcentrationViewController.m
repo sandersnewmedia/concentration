@@ -142,7 +142,8 @@
 }
 
 - (void) touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event {
-    [self.board touchesBegan:touches withEvent:event];
+    if(self.board.enabled)
+        [self.board touchesBegan:touches withEvent:event];
 }
 
 #pragma mark - Game Events
@@ -164,12 +165,14 @@
 {
     [self.view addSubview:self.helpOverlay.view];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+    self.board.enabled = NO;
 }
 
 - (void)hideHelpOverlay
 {
     [self.helpOverlay.view removeFromSuperview];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"resumeTime" object:nil];
+    self.board.enabled = YES;
 }
 
 - (void)gameStart
