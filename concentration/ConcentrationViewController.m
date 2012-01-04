@@ -20,7 +20,7 @@
 
 @synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore=_currentScore, levelStartTime=_levelStartTime;
 
-@synthesize scoreOverlay=_scoreOverlay, welcomeOverlay=_welcomeOverlay, helpOverlay=_helpOverlay;
+@synthesize scoreOverlay=_scoreOverlay, welcomeOverlay=_welcomeOverlay, helpOverlay=_helpOverlay, pauseStartTime=_pauseStartTime;
 
 - (HelpOverlayViewController *)helpOverlay
 {
@@ -53,6 +53,14 @@
         _soundUtil = [[SoundUtil alloc] init];
     }
     return _soundUtil;
+}
+
+- (NSDate *)pauseStartTime
+{
+    if(!_pauseStartTime) {
+        _pauseStartTime = [[NSDate alloc] initWithTimeIntervalSinceNow:0];
+    }
+    return _pauseStartTime;
 }
 
 - (NSDate *)levelStartTime
@@ -92,6 +100,7 @@
     [_currentScore release];
     [_soundUtil release];
     [_helpOverlay release];
+    [_pauseStartTime release];
     [super dealloc];
 }
 
@@ -165,14 +174,18 @@
 {
     [self.view addSubview:self.helpOverlay.view];
     [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+    self.pauseStartTime = nil;
+    self.pauseStartTime = [NSDate dateWithTimeIntervalSinceNow:0];
     self.board.enabled = NO;
 }
 
 - (void)hideHelpOverlay
 {
     [self.helpOverlay.view removeFromSuperview];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"resumeTime" object:nil];
+    NSTimeInterval pausePeriod   = [self.pauseStartTime timeIntervalSinceNow];
+    self.levelStartTime = [self.levelStartTime dateByAddingTimeInterval:-pausePeriod];
     self.board.enabled = YES;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"startTime" object:nil userInfo:[self scoreDict]];
 }
 
 - (void)gameStart

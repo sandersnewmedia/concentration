@@ -25,6 +25,7 @@
 @property (nonatomic) int currentLevel;
 @property (nonatomic, retain) Score *currentScore;
 @property (nonatomic, retain) NSDate *levelStartTime;
+@property (nonatomic, retain) NSDate *pauseStartTime;
 @property (nonatomic, retain) ScoreOverlayViewController *scoreOverlay;
 @property (nonatomic, retain) WelcomeOverlayViewController *welcomeOverlay;
 @property (nonatomic, retain) HelpOverlayViewController *helpOverlay;

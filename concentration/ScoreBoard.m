@@ -125,7 +125,7 @@
     self.currentLevel.text = [NSString stringWithFormat:@"Level %d", level];
 }
 
-- (void)resumeTimer
+- (void)resumeTimer:(NSNotification *)notif
 {
     [self.clock fire];
 }
@@ -146,6 +146,7 @@
 - (void)stopTimer
 {
     [self.clock invalidate];
+    self.clock = nil;
 }
 
 - (void)awakeFromNib
@@ -159,7 +160,7 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startTimer:) name:@"startTime" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearTimer:) name:@"clearTime" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTimer) name:@"pauseTime" object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"resumeTime" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startTimer:) name:@"resumeTime" object:nil];
 }
 
 
