@@ -233,6 +233,7 @@
 - (void)selectCard:(Card *)card
 {
     if(self.board.currentCard) {
+        if(card.status == Flipped || card.status == Matched) return;
         if(card.identifier != self.board.currentCard.identifier) {
             [card flip];
             if(card.type == self.board.currentCard.type) {          //MATCH
