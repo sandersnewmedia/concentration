@@ -104,8 +104,6 @@
     self.currentScore = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
     
-    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstTime"];
-    
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstTime"]) {
         [self showWelcome];
         [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstTime"];
