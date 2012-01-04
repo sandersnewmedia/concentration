@@ -10,7 +10,7 @@
 #import "Score.h"
 
 @protocol ScoreOverlayDelegate <NSObject>
-- (void)continue;
+- (void)continueToNextLevel;
 @end
 
 @interface ScoreOverlayViewController : UIViewController

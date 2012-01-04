@@ -85,6 +85,6 @@
 
 - (IBAction)continue
 {
-    [self.delegate continue];
+    [self.delegate continueToNextLevel];
 }
 @end
