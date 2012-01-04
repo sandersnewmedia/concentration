@@ -13,6 +13,7 @@
 #import "ScoreOverlayViewController.h"
 #import "Score.h"
 #import "WelcomeOverlayViewController.h"
+#import "HelpOverlayViewController.h"
 
 @interface ConcentrationViewController : UIViewController <BoardDelegate, ScoreOverlayDelegate> {
     
@@ -26,5 +27,6 @@
 @property (nonatomic, retain) NSDate *levelStartTime;
 @property (nonatomic, retain) ScoreOverlayViewController *scoreOverlay;
 @property (nonatomic, retain) WelcomeOverlayViewController *welcomeOverlay;
+@property (nonatomic, retain) HelpOverlayViewController *helpOverlay;
 
 @end

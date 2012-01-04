@@ -15,13 +15,18 @@
 @implementation ScoreBoard
 
 @synthesize currentTime=_currentTime,currentLevel=_currentLevel,currentScore=_currentScore,restartButton=_restartButton;
-@synthesize clock=_clock, levelStartTime;
+@synthesize clock=_clock, levelStartTime, helpButton=_helpButton;
 
 - (void)restartButtonPressed
 {
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Are you sure?" message:@"You will loose all of your game progress" delegate:self cancelButtonTitle:@"Go Back" otherButtonTitles:@"Yes", nil];
     [alert show];
     [alert release];
+}
+
+- (void)helpButtonPressed
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"showHelpOverlay" object:nil];
 }
 
 - (UILabel *)currentTime
@@ -71,6 +76,17 @@
     return _restartButton;
 }
 
+- (UIButton *)helpButton
+{
+    if(!_helpButton) {
+        _helpButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
+        _helpButton.frame = CGRectMake(0, 160, 180, 30);
+        [_helpButton addTarget:self action:@selector(helpButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+        _helpButton.titleLabel.text = @"HELP";
+    }
+    return _helpButton;
+}
+
 - (NSTimer *)clock
 {
     if(!_clock) {
@@ -85,6 +101,7 @@
     [_restartButton release];
     [_currentLevel release];
     [_currentTime release];
+    [_helpButton release];
     [super dealloc];
 }
 
@@ -106,6 +123,11 @@
     int level = [[[notif userInfo] objectForKey:@"level"] intValue];
     self.currentScore.text = [NSString stringWithFormat:@"%d/%d", matches, attempts];
     self.currentLevel.text = [NSString stringWithFormat:@"Level %d", level];
+}
+
+- (void)resumeTime
+{
+    [self.clock fire];
 }
 
 - (void)startTimer:(NSNotification *)notif 
@@ -132,10 +154,12 @@
     [self addSubview:self.currentScore];
     [self addSubview:self.currentLevel];
     [self addSubview:self.restartButton];
+    [self addSubview:self.helpButton];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateScore:) name:@"updateScore" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(startTimer:) name:@"startTime" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(clearTimer:) name:@"clearTime" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(stopTimer) name:@"pauseTime" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(resumeTimer) name:@"resumeTime" object:nil];
 }
 
 

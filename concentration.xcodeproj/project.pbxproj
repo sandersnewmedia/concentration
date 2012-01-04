@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0609A5CC14B4A40D00A49263 /* HelpOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0609A5CA14B4A40D00A49263 /* HelpOverlayViewController.m */; };
+		0609A5CD14B4A40D00A49263 /* HelpOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0609A5CB14B4A40D00A49263 /* HelpOverlayViewController.xib */; };
 		065799FB14A22FE400474588 /* Card.m in Sources */ = {isa = PBXBuildFile; fileRef = 065799FA14A22FE400474588 /* Card.m */; };
 		065799FF14A2395D00474588 /* page-flip-2.wav in Resources */ = {isa = PBXBuildFile; fileRef = 065799FE14A2395D00474588 /* page-flip-2.wav */; };
 		06579A0314A23B4C00474588 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 06579A0214A23B4C00474588 /* AudioToolbox.framework */; };
@@ -48,6 +50,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0609A5C914B4A40D00A49263 /* HelpOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpOverlayViewController.h; sourceTree = "<group>"; };
+		0609A5CA14B4A40D00A49263 /* HelpOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpOverlayViewController.m; sourceTree = "<group>"; };
+		0609A5CB14B4A40D00A49263 /* HelpOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HelpOverlayViewController.xib; sourceTree = "<group>"; };
 		065799F914A22FE400474588 /* Card.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Card.h; sourceTree = "<group>"; };
 		065799FA14A22FE400474588 /* Card.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Card.m; sourceTree = "<group>"; };
 		065799FE14A2395D00474588 /* page-flip-2.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "page-flip-2.wav"; sourceTree = "<group>"; };
@@ -118,6 +123,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0609A5CE14B4A4C300A49263 /* Overlays */ = {
+			isa = PBXGroup;
+			children = (
+				750264F414A4FBDF00204A2C /* ScoreOverlayViewController.h */,
+				750264F514A4FBDF00204A2C /* ScoreOverlayViewController.m */,
+				7538A17D14B3DE280059A319 /* WelcomeOverlayViewController.h */,
+				7538A17E14B3DE280059A319 /* WelcomeOverlayViewController.m */,
+				0609A5C914B4A40D00A49263 /* HelpOverlayViewController.h */,
+				0609A5CA14B4A40D00A49263 /* HelpOverlayViewController.m */,
+			);
+			name = Overlays;
+			sourceTree = "<group>";
+		};
 		065799FC14A22FE900474588 /* UIViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -152,10 +170,7 @@
 			children = (
 				754E55A614A15F82003E8E6F /* ConcentrationViewController.h */,
 				754E55A714A15F82003E8E6F /* ConcentrationViewController.m */,
-				750264F414A4FBDF00204A2C /* ScoreOverlayViewController.h */,
-				750264F514A4FBDF00204A2C /* ScoreOverlayViewController.m */,
-				7538A17D14B3DE280059A319 /* WelcomeOverlayViewController.h */,
-				7538A17E14B3DE280059A319 /* WelcomeOverlayViewController.m */,
+				0609A5CE14B4A4C300A49263 /* Overlays */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -191,6 +206,7 @@
 		06579A1214A25E1300474588 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				0609A5CB14B4A40D00A49263 /* HelpOverlayViewController.xib */,
 				7538A17F14B3DE280059A319 /* WelcomeOverlayViewController.xib */,
 				750264EA14A4F7DD00204A2C /* ScoreOverlayViewController.xib */,
 				06579A1814A25E5E00474588 /* ConcentrationViewController.xib */,
@@ -372,6 +388,7 @@
 				750264E314A4DA2400204A2C /* win-sound.wav in Resources */,
 				750264EC14A4F7DD00204A2C /* ScoreOverlayViewController.xib in Resources */,
 				7538A18114B3DE280059A319 /* WelcomeOverlayViewController.xib in Resources */,
+				0609A5CD14B4A40D00A49263 /* HelpOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -417,6 +434,7 @@
 				750264F014A4F8D200204A2C /* Score.m in Sources */,
 				750264F614A4FBDF00204A2C /* ScoreOverlayViewController.m in Sources */,
 				7538A18014B3DE280059A319 /* WelcomeOverlayViewController.m in Sources */,
+				0609A5CC14B4A40D00A49263 /* HelpOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

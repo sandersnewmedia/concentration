@@ -20,7 +20,15 @@
 
 @synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore=_currentScore, levelStartTime=_levelStartTime;
 
-@synthesize scoreOverlay=_scoreOverlay, welcomeOverlay=_welcomeOverlay;
+@synthesize scoreOverlay=_scoreOverlay, welcomeOverlay=_welcomeOverlay, helpOverlay=_helpOverlay;
+
+- (HelpOverlayViewController *)helpOverlay
+{
+    if(!_helpOverlay) {
+        _helpOverlay = [[HelpOverlayViewController alloc] initWithNibName:@"HelpOverlayViewController" bundle:nil];
+    }
+    return _helpOverlay;
+}
 
 - (WelcomeOverlayViewController *)welcomeOverlay
 {
@@ -83,6 +91,7 @@
     [_levelStartTime release];
     [_currentScore release];
     [_soundUtil release];
+    [_helpOverlay release];
     [super dealloc];
 }
 
@@ -103,6 +112,8 @@
     self.currentLevel = 0;
     self.currentScore = 0;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideHelpOverlay) name:@"continueWithGame" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showHelpOverlay) name:@"showHelpOverlay" object:nil];
     
     if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstTime"]) {
         [self showWelcome];
@@ -114,6 +125,9 @@
 
 - (void)viewDidUnload
 {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"restart" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"continueWithGame" object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"showHelpOverlay" object:nil];
     self.board.delegate = nil;
     self.board = nil;
     [super viewDidUnload];
@@ -131,8 +145,7 @@
     [self.board touchesBegan:touches withEvent:event];
 }
 
-#pragma mark - Game Logic
-
+#pragma mark - Game Events
 
 - (void)showWelcome
 {
@@ -145,6 +158,18 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"welcomeOverlayClosed" object:nil];
     [self.welcomeOverlay.view removeFromSuperview];
     [self nextLevel];
+}
+
+- (void)showHelpOverlay
+{
+    [self.view addSubview:self.helpOverlay.view];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+}
+
+- (void)hideHelpOverlay
+{
+    [self.helpOverlay.view removeFromSuperview];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"resumeTime" object:nil];
 }
 
 - (void)gameStart
