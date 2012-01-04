@@ -36,10 +36,10 @@
 
 - (void)updateScore:(NSDictionary *)dict
 {
-    self.time.text = [self getTimeRemainingString:(NSDate *)[dict objectForKey:@"startTime"]];
-    self.attempts.text = [[dict objectForKey:@"attempts"] stringValue];
-    self.currentScore = (Score *)[dict objectForKey:@"score"];
-    self.score.text = [NSString stringWithFormat:@"%.0f", self.currentScore.score];
+    self.time.text      = [self getTimeRemainingString:(NSDate *)[dict objectForKey:@"startTime"]];
+    self.attempts.text  = [[dict objectForKey:@"attempts"] stringValue];
+    self.currentScore   = (Score *)[dict objectForKey:@"score"];
+    self.score.text     = [NSString stringWithFormat:@"%.0f", self.currentScore.score];
 }
 
 - (void)didReceiveMemoryWarning
@@ -83,7 +83,7 @@
     return NO;
 }
 
-- (IBAction)continue
+- (IBAction)continueToNextLevel
 {
     [self.delegate continueToNextLevel];
 }

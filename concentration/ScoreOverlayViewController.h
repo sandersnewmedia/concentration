@@ -20,8 +20,7 @@
 @property (nonatomic, retain) IBOutlet UILabel *attempts;
 @property (nonatomic, assign) id <ScoreOverlayDelegate> delegate;
 @property (nonatomic, assign) Score *currentScore;
-- (IBAction)continue;
+- (IBAction)continueToNextLevel;
 - (void)updateScore:(NSDictionary *)dict;
-
 - (id)initWithScore:(Score *)theScore;
 @end

@@ -66,7 +66,7 @@
         _restartButton = [[UIButton buttonWithType:UIButtonTypeRoundedRect] retain];
         _restartButton.frame = CGRectMake(0, 120, 180, 30);
         [_restartButton addTarget:self action:@selector(restartButtonPressed) forControlEvents:UIControlEventTouchUpInside];
-        _restartButton.titleLabel.text = @"Restart";
+        _restartButton.titleLabel.text = @"RESTART";
     }
     return _restartButton;
 }

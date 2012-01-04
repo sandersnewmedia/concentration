@@ -102,12 +102,15 @@
     self.board.delegate = self;
     self.currentLevel = 0;
     self.currentScore = 0;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
     
-    if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstTime"]) {
+    [[NSUserDefaults standardUserDefaults] setBool:NO forKey:@"firstTime"];
+    
+    if(![[NSUserDefaults standardUserDefaults] boolForKey:@"firstTime"]) {
         [self showWelcome];
+        [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"firstTime"];
     } else {
         [self nextLevel];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
     }
 }
 
@@ -136,12 +139,14 @@
 - (void)showWelcome
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideWelcome) name:@"welcomeOverlayClosed" object:nil];
-    //show this
+    [self.view addSubview:self.welcomeOverlay.view];
 }
 
 - (void)hideWelcome
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self name:@"welcomeOverlayClosed" object:nil];
+    [self.welcomeOverlay.view removeFromSuperview];
+    [self nextLevel];
 }
 
 - (void)gameStart
