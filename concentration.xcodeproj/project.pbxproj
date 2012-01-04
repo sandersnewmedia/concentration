@@ -18,6 +18,8 @@
 		750264EC14A4F7DD00204A2C /* ScoreOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 750264EA14A4F7DD00204A2C /* ScoreOverlayViewController.xib */; };
 		750264F014A4F8D200204A2C /* Score.m in Sources */ = {isa = PBXBuildFile; fileRef = 750264EF14A4F8D200204A2C /* Score.m */; };
 		750264F614A4FBDF00204A2C /* ScoreOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 750264F514A4FBDF00204A2C /* ScoreOverlayViewController.m */; };
+		7538A18014B3DE280059A319 /* WelcomeOverlayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7538A17E14B3DE280059A319 /* WelcomeOverlayViewController.m */; };
+		7538A18114B3DE280059A319 /* WelcomeOverlayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7538A17F14B3DE280059A319 /* WelcomeOverlayViewController.xib */; };
 		754E559514A15F82003E8E6F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559414A15F82003E8E6F /* UIKit.framework */; };
 		754E559714A15F82003E8E6F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559614A15F82003E8E6F /* Foundation.framework */; };
 		754E559914A15F82003E8E6F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 754E559814A15F82003E8E6F /* CoreGraphics.framework */; };
@@ -62,6 +64,9 @@
 		750264EF14A4F8D200204A2C /* Score.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Score.m; sourceTree = "<group>"; };
 		750264F414A4FBDF00204A2C /* ScoreOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScoreOverlayViewController.h; sourceTree = "<group>"; };
 		750264F514A4FBDF00204A2C /* ScoreOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScoreOverlayViewController.m; sourceTree = "<group>"; };
+		7538A17D14B3DE280059A319 /* WelcomeOverlayViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WelcomeOverlayViewController.h; sourceTree = "<group>"; };
+		7538A17E14B3DE280059A319 /* WelcomeOverlayViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WelcomeOverlayViewController.m; sourceTree = "<group>"; };
+		7538A17F14B3DE280059A319 /* WelcomeOverlayViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WelcomeOverlayViewController.xib; sourceTree = "<group>"; };
 		754E559014A15F82003E8E6F /* concentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = concentration.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		754E559414A15F82003E8E6F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		754E559614A15F82003E8E6F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -149,6 +154,8 @@
 				754E55A714A15F82003E8E6F /* ConcentrationViewController.m */,
 				750264F414A4FBDF00204A2C /* ScoreOverlayViewController.h */,
 				750264F514A4FBDF00204A2C /* ScoreOverlayViewController.m */,
+				7538A17D14B3DE280059A319 /* WelcomeOverlayViewController.h */,
+				7538A17E14B3DE280059A319 /* WelcomeOverlayViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -184,6 +191,7 @@
 		06579A1214A25E1300474588 /* NIBs */ = {
 			isa = PBXGroup;
 			children = (
+				7538A17F14B3DE280059A319 /* WelcomeOverlayViewController.xib */,
 				750264EA14A4F7DD00204A2C /* ScoreOverlayViewController.xib */,
 				06579A1814A25E5E00474588 /* ConcentrationViewController.xib */,
 			);
@@ -363,6 +371,7 @@
 				06579A1914A25E5E00474588 /* ConcentrationViewController.xib in Resources */,
 				750264E314A4DA2400204A2C /* win-sound.wav in Resources */,
 				750264EC14A4F7DD00204A2C /* ScoreOverlayViewController.xib in Resources */,
+				7538A18114B3DE280059A319 /* WelcomeOverlayViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,6 +416,7 @@
 				06579A1E14A26F9E00474588 /* ScoreBoard.m in Sources */,
 				750264F014A4F8D200204A2C /* Score.m in Sources */,
 				750264F614A4FBDF00204A2C /* ScoreOverlayViewController.m in Sources */,
+				7538A18014B3DE280059A319 /* WelcomeOverlayViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

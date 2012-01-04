@@ -11,6 +11,7 @@
 @interface ConcentrationViewController()
 - (void)nextLevel;
 - (void)levelComplete;
+- (void)showWelcome;
 - (NSDictionary *)scoreDict;
 - (void)calculateScore;
 @end
@@ -81,8 +82,13 @@
     self.board.delegate = self;
     self.currentLevel = 0;
     self.currentScore = 0;
-    [self nextLevel];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
+    
+    if([[NSUserDefaults standardUserDefaults] boolForKey:@"firstTime"]) {
+        [self showWelcome];
+    } else {
+        [self nextLevel];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(restart) name:@"restart" object:nil];
+    }
 }
 
 - (void)viewDidUnload
@@ -134,6 +140,34 @@
     [self nextLevel];
 }
 
+
+- (void)levelComplete
+{
+    //update the value of the current score
+    [self calculateScore];
+    self.board.enabled = NO;
+    [self.soundUtil playSound:LevelComplete];
+    [self.view addSubview:self.scoreOverlay.view];
+    [self.scoreOverlay updateScore:[self scoreDict]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
+}
+
+
+- (void)showWelcome
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideWelcome) name:@"welcomeOverlayClosed" object:nil];
+    //show this
+}
+
+- (void)hideWelcome
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"welcomeOverlayClosed" object:nil];
+}
+
+
+
+
+
 - (NSDictionary *)scoreDict
 {
     NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
@@ -146,16 +180,6 @@
     return dict;
 }
 
-- (void)levelComplete
-{
-    //update the value of the current score
-    [self calculateScore];
-    self.board.enabled = NO;
-    [self.soundUtil playSound:LevelComplete];
-    [self.view addSubview:self.scoreOverlay.view];
-    [self.scoreOverlay updateScore:[self scoreDict]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
-}
 
 - (void)calculateScore
 {
