@@ -20,9 +20,17 @@
 
 @synthesize board,scoreBoard,soundUtil=_soundUtil, currentLevel, currentScore=_currentScore, levelStartTime=_levelStartTime;
 
-@synthesize scoreOverlay=_scoreOverlay;
+@synthesize scoreOverlay=_scoreOverlay, welcomeOverlay=_welcomeOverlay;
 
--(ScoreOverlayViewController *)scoreOverlay
+- (WelcomeOverlayViewController *)welcomeOverlay
+{
+    if(!_welcomeOverlay) {
+        _welcomeOverlay = [[WelcomeOverlayViewController alloc] initWithNibName:@"WelcomeOverlayViewController" bundle:nil];
+    }
+    return _welcomeOverlay;
+}
+
+- (ScoreOverlayViewController *)scoreOverlay
 {
     if(!_scoreOverlay) {
         _scoreOverlay = [[ScoreOverlayViewController alloc] initWithScore:self.currentScore];
@@ -55,11 +63,23 @@
     return _currentScore;
 }
 
+- (NSDictionary *)scoreDict
+{
+    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
+                           [NSNumber numberWithInt:self.board.matches],  @"matches",
+                           [NSNumber numberWithInt:self.board.attempts], @"attempts",
+                           [NSNumber numberWithInt:self.currentLevel], @"level",
+                           self.currentScore, @"score",
+                           self.levelStartTime, @"startTime",
+                           nil] autorelease];
+    return dict;
+}
 
 - (void)dealloc
 {
     self.scoreOverlay.delegate = nil;
     [_scoreOverlay release];
+    [_welcomeOverlay release];
     [_levelStartTime release];
     [_currentScore release];
     [_soundUtil release];
@@ -103,7 +123,6 @@
     if (interfaceOrientation == UIInterfaceOrientationLandscapeLeft) {
         return YES;
     }
-    
     return NO;
 }
 
@@ -111,14 +130,37 @@
     [self.board touchesBegan:touches withEvent:event];
 }
 
-
 #pragma mark - Game Logic
+
+
+- (void)showWelcome
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideWelcome) name:@"welcomeOverlayClosed" object:nil];
+    //show this
+}
+
+- (void)hideWelcome
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"welcomeOverlayClosed" object:nil];
+}
+
 - (void)gameStart
 {
     self.board.enabled = YES;
     self.levelStartTime = nil;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"startTime" object:nil userInfo:[self scoreDict]];
     [self.board hidePeek];
+}
+
+- (void)levelComplete
+{
+    //update the value of the current score
+    [self calculateScore];
+    self.board.enabled = NO;
+    [self.soundUtil playSound:LevelComplete];
+    [self.view addSubview:self.scoreOverlay.view];
+    [self.scoreOverlay updateScore:[self scoreDict]];
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
 }
 
 - (void)nextLevel
@@ -140,45 +182,6 @@
     [self nextLevel];
 }
 
-
-- (void)levelComplete
-{
-    //update the value of the current score
-    [self calculateScore];
-    self.board.enabled = NO;
-    [self.soundUtil playSound:LevelComplete];
-    [self.view addSubview:self.scoreOverlay.view];
-    [self.scoreOverlay updateScore:[self scoreDict]];
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"pauseTime" object:nil];
-}
-
-
-- (void)showWelcome
-{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(hideWelcome) name:@"welcomeOverlayClosed" object:nil];
-    //show this
-}
-
-- (void)hideWelcome
-{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"welcomeOverlayClosed" object:nil];
-}
-
-
-
-
-
-- (NSDictionary *)scoreDict
-{
-    NSDictionary *dict = [[[NSDictionary alloc] initWithObjectsAndKeys:
-                           [NSNumber numberWithInt:self.board.matches],  @"matches",
-                           [NSNumber numberWithInt:self.board.attempts], @"attempts",
-                           [NSNumber numberWithInt:self.currentLevel], @"level",
-                           self.currentScore, @"score",
-                           self.levelStartTime, @"startTime",
-                           nil] autorelease];
-    return dict;
-}
 
 
 - (void)calculateScore
@@ -221,7 +224,7 @@
 }
 
 #pragma mark - Score Overlay Delegate Methods
-- (void)continue
+- (void)continueToNextLevel
 {
     [self.scoreOverlay.view removeFromSuperview];
     [self nextLevel];
