@@ -125,7 +125,7 @@
     self.currentLevel.text = [NSString stringWithFormat:@"Level %d", level];
 }
 
-- (void)resumeTime
+- (void)resumeTimer
 {
     [self.clock fire];
 }
